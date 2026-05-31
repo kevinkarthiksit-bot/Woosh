@@ -1,0 +1,68 @@
+# AGENTS.md — Woosh Website
+
+## Project
+
+Premium doorstep vehicle care marketing website for **Woosh**. Frontend-only v1.
+
+## Stack
+
+- Next.js 15 (App Router), TypeScript, Tailwind CSS v4
+- Framer Motion, Embla Carousel, Lucide React
+- Package manager: **pnpm** (`corepack pnpm install`)
+
+## Structure
+
+```
+app/                  # Next.js routes
+components/ui/        # Reusable design system components
+components/sections/  # Landing page sections
+components/providers/ # React context (AuthModal)
+lib/                  # brand.ts, services.ts, utils.ts
+public/assets/        # Brand images, videos, icons
+docs/                 # Project documentation
+```
+
+## Scope Boundaries
+
+**Do not build unless explicitly requested:**
+
+- Backend APIs
+- MongoDB integration
+- CRM / admin dashboards
+- Real authentication
+- Real booking or payment flows
+
+**Current booking/auth behavior:** CTAs open the Login/Sign Up modal (phone or email, UI only).
+
+## Key Files
+
+- `lib/services.ts` — single source for service data, hero slides, testimonials, before/after pairs
+- `lib/brand.ts` — brand colors, nav links, taglines
+- `components/providers/AuthModalProvider.tsx` — modal state
+- `app/page.tsx` — landing page composition
+- `app/services/[slug]/page.tsx` — service detail pages
+
+## Design Tokens
+
+See `app/globals.css` and `docs/BRAND_GUIDE.md`. Primary palette: charcoal/navy backgrounds, cyan accents, gold for premium, green for eco.
+
+## Assets
+
+Source assets live on Desktop at `Woosh/`. Project copies are in `public/assets/`. When adding new assets, use kebab-case filenames.
+
+## Commands
+
+```bash
+pnpm install
+pnpm dev      # http://localhost:3000
+pnpm build
+pnpm lint
+```
+
+## Conventions
+
+- Match existing component patterns and Tailwind token usage
+- Keep service data in `lib/services.ts` rather than duplicating
+- Use client components only when hooks/interactivity are needed
+- Respect `prefers-reduced-motion` for carousels and animations
+- Document significant decisions in `docs/DECISIONS.md`

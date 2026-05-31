@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-charcoal: #050a18;
+  --color-navy: #0a1628;
+  --color-cyan: #00bfff;
+  --color-blue: #0070ff;
+  --color-gold: #d4af37;
+  --color-eco: #22c55e;
+  --color-surface: #f8fafc;
+  --font-sans: var(--font-inter);
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-charcoal);
+  color: white;
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-display), var(--font-inter), system-ui, sans-serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.glow-cyan {
+  box-shadow: 0 0 24px rgba(0, 191, 255, 0.35);
+}
+
+.glow-cyan-hover:hover {
+  box-shadow: 0 0 32px rgba(0, 191, 255, 0.5);
+}
+
+.glass-panel {
+  background: rgba(10, 22, 40, 0.72);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 191, 255, 0.15);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, #00bfff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.section-padding {
+  padding-block: clamp(4rem, 8vw, 7rem);
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 3px;
+}
+
+@keyframes ken-burns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+.ken-burns {
+  animation: ken-burns 18s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ken-burns {
+    animation: none;
+  }
+}

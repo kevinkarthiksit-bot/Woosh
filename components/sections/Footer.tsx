@@ -1,0 +1,91 @@
+"use client";
+
+import { AppDownloadButtons } from "@/components/ui/AppDownloadButtons";
+import { brand } from "@/lib/brand";
+import { scrollToSection } from "@/lib/utils";
+import { Facebook, Instagram } from "lucide-react";
+import Image from "next/image";
+
+function XIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="currentColor">
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+  );
+}
+
+export function Footer() {
+  return (
+    <footer className="border-t border-white/10 bg-charcoal py-12">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-4 lg:px-8">
+        <div className="space-y-4 lg:col-span-2">
+          <div className="flex items-center gap-3">
+            <Image
+              src="/assets/brand/logo.jpeg"
+              alt="Woosh logo"
+              width={48}
+              height={48}
+              className="rounded-xl"
+            />
+            <div>
+              <p className="font-bold text-white">{brand.name}</p>
+              <p className="text-sm text-cyan">{brand.tagline}</p>
+            </div>
+          </div>
+          <p className="max-w-sm text-sm leading-relaxed text-white/65">
+            {brand.motto} Premium doorstep vehicle care for cars, bikes, autos, and more.
+          </p>
+          <AppDownloadButtons size="sm" />
+        </div>
+
+        <div>
+          <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-white/80">
+            Quick Links
+          </h3>
+          <div className="flex flex-col gap-3">
+            <button
+              type="button"
+              onClick={() => scrollToSection("#contact")}
+              className="focus-ring w-fit text-sm text-white/70 transition hover:text-cyan"
+            >
+              Contact Us
+            </button>
+            <button
+              type="button"
+              onClick={() => scrollToSection("#blogs")}
+              className="focus-ring w-fit text-sm text-white/70 transition hover:text-cyan"
+            >
+              Blogs
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-white/80">
+            Follow Woosh
+          </h3>
+          <div className="flex gap-3">
+            {[
+              { label: "X", href: "#", Icon: XIcon },
+              { label: "Facebook", href: "#", Icon: Facebook },
+              { label: "Instagram", href: "#", Icon: Instagram },
+            ].map(({ label, href, Icon }) => (
+              <a
+                key={label}
+                href={href}
+                aria-label={label}
+                className="focus-ring inline-flex rounded-full border border-white/10 p-3 text-white/70 transition hover:border-cyan/40 hover:text-cyan"
+              >
+                <Icon className="h-5 w-5" />
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="mx-auto mt-10 max-w-7xl border-t border-white/10 px-4 pt-6 text-center text-sm text-white/50 sm:px-6 lg:px-8">
+        © {new Date().getFullYear()} Woosh. All rights reserved.
+      </div>
+    </footer>
+  );
+}
