@@ -9,6 +9,11 @@
 - [x] Build service detail pages
 - [x] Create documentation
 
+## Release milestones
+
+- [ ] **v0.2.0** — FRONTEND_UPGRADE_PLAN Phases 1–4 (performance, type, illustrations, motion)
+- [ ] **v1.0.0** — Public launch (`NEXT_PUBLIC_SITE_LIVE=true`, real app/social URLs, legal pages)
+
 ## Next Frontend Tasks
 
 - [ ] Connect auth modal to real OTP/email verification API

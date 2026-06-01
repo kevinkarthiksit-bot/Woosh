@@ -12,6 +12,8 @@ interface ServiceTileProps {
 }
 
 export function ServiceTile({ service, className, stagger = false }: ServiceTileProps) {
+  const objectPosition = service.imageObjectPosition ?? "50% 50%";
+
   return (
     <Link
       href={`/services/${service.slug}`}
@@ -22,15 +24,16 @@ export function ServiceTile({ service, className, stagger = false }: ServiceTile
         className,
       )}
     >
-      <div className="relative aspect-[4/5] min-h-[320px] sm:aspect-[3/4] lg:min-h-[360px]">
+      <div className="relative aspect-[4/5] min-h-[260px] sm:min-h-[300px] lg:min-h-[340px]">
         <Image
           src={service.image}
           alt={service.title}
           fill
-          className="object-cover transition duration-700 group-hover:scale-110"
+          className="object-cover transition duration-700 group-hover:scale-105"
+          style={{ objectPosition }}
           sizes="(max-width:768px) 100vw, 400px"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/35 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/40 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-cyan/10 opacity-0 transition duration-500 group-hover:opacity-100" />
 
         <div className="absolute left-4 top-4 flex items-center gap-2">

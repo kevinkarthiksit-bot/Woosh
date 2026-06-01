@@ -2,7 +2,8 @@
 
 import { AppDownloadButtons } from "@/components/ui/AppDownloadButtons";
 import { brand } from "@/lib/brand";
-import { scrollToSection } from "@/lib/utils";
+import { formatBuildLabel } from "@/lib/build-info";
+import { useSectionNav } from "@/hooks/useSectionNav";
 import { Facebook, Instagram } from "lucide-react";
 import Image from "next/image";
 
@@ -15,6 +16,8 @@ function XIcon({ className }: { className?: string }) {
 }
 
 export function Footer() {
+  const { goToSection } = useSectionNav();
+
   return (
     <footer className="border-t border-white/10 bg-charcoal py-12">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-4 lg:px-8">
@@ -45,14 +48,14 @@ export function Footer() {
           <div className="flex flex-col gap-3">
             <button
               type="button"
-              onClick={() => scrollToSection("#contact")}
+              onClick={() => goToSection("#contact")}
               className="focus-ring w-fit text-sm text-white/70 transition hover:text-cyan"
             >
               Contact Us
             </button>
             <button
               type="button"
-              onClick={() => scrollToSection("#blogs")}
+              onClick={() => goToSection("#blogs")}
               className="focus-ring w-fit text-sm text-white/70 transition hover:text-cyan"
             >
               Blogs
@@ -84,7 +87,10 @@ export function Footer() {
       </div>
 
       <div className="mx-auto mt-10 max-w-7xl border-t border-white/10 px-4 pt-6 text-center text-sm text-white/50 sm:px-6 lg:px-8">
-        © {new Date().getFullYear()} Woosh. All rights reserved.
+        <p>© {new Date().getFullYear()} Woosh. All rights reserved.</p>
+        <p className="mt-2 text-xs text-white/35" aria-label="Site build version">
+          {formatBuildLabel()}
+        </p>
       </div>
     </footer>
   );

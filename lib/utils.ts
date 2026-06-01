@@ -1,10 +1,16 @@
+import { twMerge } from "tailwind-merge";
+
 export function cn(...classes: Array<string | false | null | undefined>) {
-  return classes.filter(Boolean).join(" ");
+  return twMerge(classes.filter(Boolean).join(" "));
 }
 
-export function scrollToSection(id: string) {
+export function scrollToSection(id: string): boolean {
   const element = document.getElementById(id.replace(/^#/, ""));
-  element?.scrollIntoView({ behavior: "smooth", block: "start" });
+  if (!element) return false;
+
+  const behavior = prefersReducedMotion() ? "auto" : "smooth";
+  element.scrollIntoView({ behavior, block: "start" });
+  return true;
 }
 
 export function prefersReducedMotion() {

@@ -10,7 +10,7 @@ export function AppDownloadSection() {
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan">
               Woosh App
             </p>
-            <h2 className="font-display text-3xl font-bold text-white sm:text-4xl">
+            <h2 className="font-display text-h2 text-white">
               Book washes, track plans, earn Woosh Coins
             </h2>
             <p className="text-base leading-relaxed text-white/70">

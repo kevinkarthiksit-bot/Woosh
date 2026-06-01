@@ -14,6 +14,8 @@ export interface Service {
   description: string;
   cardDescription: string;
   image: string;
+  /** 16:9 poster for hero fallback, transformations carousel, detail video */
+  poster16x9: string;
   icon: string;
   /** Service detail page + Transformations carousel */
   detailVideo: string;
@@ -31,6 +33,8 @@ export interface Service {
   detailDescription: string;
   featured?: boolean;
   goldAccent?: boolean;
+  /** Tailwind object-position for service card crop (e.g. 50% 30%) */
+  imageObjectPosition?: string;
 }
 
 export const services: Service[] = [
@@ -41,10 +45,12 @@ export const services: Service[] = [
     description: "Premium foam wash, pressure clean, and showroom finish at your doorstep.",
     cardDescription: "Thick foam pre-soak, deep clean, and long-lasting shine for your car.",
     image: "/assets/services/car-wash.jpg",
+    poster16x9: "/assets/posters/car-wash-16x9.jpg",
     icon: "/assets/icons/car-wash.png",
     detailVideo: "/assets/videos/car-wash-and-care.mp4",
-    heroVideo: "/assets/videos/hero/car-wash-action.mp4",
-    heroPoster: "/assets/services/car-wash.jpg",
+    heroVideo: "/assets/videos/car-wash-and-care.mp4",
+    imageObjectPosition: "50% 32%",
+    heroPoster: "/assets/posters/car-wash-16x9.jpg",
     heroMediaType: "video",
     heroOverlay: "from-charcoal via-charcoal/85 to-charcoal/25",
     slideLabel: "01 Car Wash",
@@ -68,10 +74,12 @@ export const services: Service[] = [
     description: "Expert bike cleaning with premium products for smooth, immaculate rides.",
     cardDescription: "Power clean and quick shine treatments tailored for two-wheelers.",
     image: "/assets/services/bike-wash.jpg",
+    poster16x9: "/assets/posters/bike-wash-16x9.jpg",
     icon: "/assets/icons/bike-wash.png",
     detailVideo: "/assets/videos/bike-wash-and-care.mp4",
-    heroVideo: "/assets/videos/hero/bike-wash-action.mp4",
-    heroPoster: "/assets/services/bike-wash.jpg",
+    heroVideo: "/assets/videos/bike-wash-and-care.mp4",
+    imageObjectPosition: "50% 55%",
+    heroPoster: "/assets/posters/bike-wash-16x9.jpg",
     heroMediaType: "video",
     heroOverlay: "from-charcoal via-charcoal/80 to-blue/20",
     slideLabel: "02 Bike Care",
@@ -94,10 +102,12 @@ export const services: Service[] = [
     description: "Clean, comfortable, and reliable care for autos and three-wheelers.",
     cardDescription: "Doorstep auto cleaning with trained professionals and transparent pricing.",
     image: "/assets/services/auto-wash.jpg",
+    poster16x9: "/assets/posters/auto-wash-16x9.jpg",
     icon: "/assets/icons/car-wash.png",
     detailVideo: "/assets/videos/auto-wash-and-care.mp4",
-    heroVideo: "/assets/videos/hero/auto-wash-action.mp4",
-    heroPoster: "/assets/services/auto-wash.jpg",
+    heroVideo: "/assets/videos/auto-wash-and-care.mp4",
+    imageObjectPosition: "50% 48%",
+    heroPoster: "/assets/posters/auto-wash-16x9.jpg",
     heroMediaType: "video",
     heroOverlay: "from-charcoal via-charcoal/80 to-charcoal/30",
     slideLabel: "03 Auto Wash",
@@ -120,10 +130,12 @@ export const services: Service[] = [
     description: "Save more with flexible monthly wash plans for cars and bikes.",
     cardDescription: "Best-value plans with easy booking, pause, resume, or cancel anytime.",
     image: "/assets/services/monthly-packages.jpg",
+    poster16x9: "/assets/posters/monthly-packages-16x9.jpg",
     icon: "/assets/icons/monthly-packages.png",
     detailVideo: "/assets/videos/monthly-packages.mp4",
-    heroVideo: "/assets/videos/hero/monthly-hero-action.mp4",
-    heroPoster: "/assets/services/monthly-packages.jpg",
+    heroVideo: "/assets/videos/car-wash-and-care.mp4",
+    imageObjectPosition: "50% 22%",
+    heroPoster: "/assets/posters/monthly-packages-16x9.jpg",
     heroMediaType: "video",
     heroOverlay: "from-charcoal via-navy/80 to-blue/25",
     slideLabel: "04 Monthly Plans",
@@ -149,11 +161,13 @@ export const services: Service[] = [
     description: "Keep your car fresh every single day with quick interior care.",
     cardDescription: "Starting at ₹49/day — interior dusting, dashboard clean, and more.",
     image: "/assets/services/daily-cleaning.jpg",
+    poster16x9: "/assets/posters/daily-cleaning-16x9.jpg",
     icon: "/assets/icons/monthly-packages.png",
     detailVideo: "/assets/videos/daily-cleaning-services.mp4",
-    heroVideo: null,
-    heroPoster: "/assets/services/daily-cleaning.jpg",
-    heroMediaType: "image",
+    heroVideo: "/assets/videos/daily-cleaning-services.mp4",
+    heroPoster: "/assets/posters/daily-cleaning-16x9.jpg",
+    heroMediaType: "video",
+    imageObjectPosition: "50% 42%",
     heroOverlay: "from-charcoal via-charcoal/75 to-eco/15",
     slideLabel: "05 Daily Cleaning",
     heroHeadline: "Fresh Every Day",
@@ -214,31 +228,31 @@ export const transformationVideos = [
     id: "car-wash",
     title: "Car Wash and Care",
     video: "/assets/videos/car-wash-and-care.mp4",
-    poster: "/assets/services/car-wash.jpg",
+    poster: "/assets/posters/car-wash-16x9.jpg",
   },
   {
     id: "bike-wash",
     title: "Bike Wash and Care",
     video: "/assets/videos/bike-wash-and-care.mp4",
-    poster: "/assets/services/bike-wash.jpg",
+    poster: "/assets/posters/bike-wash-16x9.jpg",
   },
   {
     id: "auto-wash",
     title: "Auto Wash and Care",
     video: "/assets/videos/auto-wash-and-care.mp4",
-    poster: "/assets/services/auto-wash.jpg",
+    poster: "/assets/posters/auto-wash-16x9.jpg",
   },
   {
     id: "monthly",
     title: "Monthly Packages",
     video: "/assets/videos/monthly-packages.mp4",
-    poster: "/assets/services/monthly-packages.jpg",
+    poster: "/assets/posters/monthly-packages-16x9.jpg",
   },
   {
     id: "daily",
     title: "Daily Cleaning",
     video: "/assets/videos/daily-cleaning-services.mp4",
-    poster: "/assets/services/daily-cleaning.jpg",
+    poster: "/assets/posters/daily-cleaning-16x9.jpg",
   },
   {
     id: "service-1",

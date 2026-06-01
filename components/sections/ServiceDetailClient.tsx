@@ -53,7 +53,7 @@ export function ServiceDetailClient({ service }: { service: Service }) {
               </ul>
             </div>
             <div className="overflow-hidden rounded-3xl border border-white/10">
-              <video controls poster={service.image} className="aspect-video w-full object-cover">
+              <video controls poster={service.poster16x9} className="aspect-video w-full object-cover">
                 <source src={service.detailVideo} type="video/mp4" />
               </video>
             </div>

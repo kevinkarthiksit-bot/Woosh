@@ -1,5 +1,6 @@
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { SectionReveal } from "@/components/ui/SectionReveal";
 import { ServiceTile } from "@/components/ui/ServiceTile";
 import { services } from "@/lib/services";
 
@@ -17,6 +18,7 @@ export function ServicesSection() {
           subtitle="Choose the Woosh service that fits your lifestyle — each delivered with trained professionals and transparent pricing."
         />
 
+        <SectionReveal>
         <div className="grid gap-5 lg:grid-cols-2 lg:gap-6">
           {featured ? (
             <ServiceTile service={featured} className="lg:row-span-2 lg:min-h-full" />
@@ -28,6 +30,7 @@ export function ServicesSection() {
             ))}
           </div>
         </div>
+        </SectionReveal>
       </Container>
     </section>
   );

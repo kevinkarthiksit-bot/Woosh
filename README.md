@@ -26,6 +26,10 @@ pnpm build
 pnpm start
 ```
 
+### Deploy
+
+Merges to `main` deploy to Vercel via GitHub integration. See `docs/DEPLOYMENT.md` and `docs/RELEASE.md`.
+
 ## Project Structure
 
 - `app/` — Next.js App Router pages
@@ -53,4 +57,7 @@ This is a **frontend-only v1**. Authentication, booking, payments, and backend A
 | `docs/DECISIONS.md` | Key project decisions |
 | `docs/API_ASSUMPTIONS.md` | Future backend API plans |
 | `docs/TODO.md` | Task list and blockers |
+| `docs/DEPLOYMENT.md` | Vercel + GitHub deploys, env vars, rollback |
+| `docs/RELEASE.md` | Semver, changelog, git tags |
+| `CHANGELOG.md` | Release history |
 | `AGENTS.md` | Instructions for Cursor agents |

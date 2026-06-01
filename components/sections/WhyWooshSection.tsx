@@ -36,22 +36,22 @@ export function WhyWooshSection() {
           subtitle="Every detail is designed to deliver trust, convenience, and a consistently exceptional experience."
         />
 
-        <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
-          <div className="relative overflow-hidden rounded-3xl">
-            <div className="relative aspect-[4/5] min-h-[420px] lg:sticky lg:top-32">
+        <div className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
+          <div className="relative overflow-hidden rounded-3xl border border-white/8 bg-navy/30">
+            <div className="relative aspect-[16/10] min-h-[240px] w-full lg:sticky lg:top-28 lg:aspect-[4/3] lg:min-h-[320px]">
               <Image
                 src="/assets/services/power-clean-car.jpg"
                 alt="Professional Woosh car cleaning"
                 fill
-                className="object-cover"
-                sizes="500px"
+                className="object-cover object-[50%_42%]"
+                sizes="(max-width: 1024px) 100vw, 480px"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6">
+              <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/25 to-transparent" />
+              <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6">
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan">
                   Trained Professionals
                 </p>
-                <p className="mt-2 text-2xl font-bold text-white">
+                <p className="mt-2 text-xl font-bold text-white sm:text-2xl">
                   Premium care. Powerful clean.
                 </p>
               </div>

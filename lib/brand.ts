@@ -16,6 +16,12 @@ export const brand = {
     ios: "#",
     android: "#",
   },
+  /** When false, store badges show "Coming soon" and links are disabled */
+  appsLive: false,
+  badgeAssets: {
+    appStore: "/assets/badges/app-store.svg",
+    googlePlay: "/assets/badges/google-play.svg",
+  },
 } as const;
 
 export const navLinks = [

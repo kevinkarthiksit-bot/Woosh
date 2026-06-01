@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { X } from "lucide-react";
+import { useFocusTrap } from "@/hooks/useFocusTrap";
 import { ReactNode, useEffect, useId, useRef } from "react";
 
 interface ModalProps {
@@ -15,6 +16,8 @@ export function Modal({ open, onClose, title, children }: ModalProps) {
   const titleId = useId();
   const dialogRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
+
+  useFocusTrap(dialogRef, open);
 
   useEffect(() => {
     if (!open) return;

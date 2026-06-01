@@ -3,6 +3,7 @@
 import { useAuthModal } from "@/components/providers/AuthModalProvider";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { WooshIllustration } from "@/components/ui/WooshIllustration";
 import { Crown } from "lucide-react";
 import Image from "next/image";
 
@@ -16,18 +17,19 @@ export function WooshPrimeSection() {
           src="/assets/testimonials/prime-poster.jpg"
           alt=""
           fill
-          className="object-cover opacity-30"
+          className="object-cover object-center opacity-25"
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-charcoal via-charcoal/95 to-charcoal/70" />
       </div>
 
       <Container className="relative section-padding">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="space-y-6">
             <div className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-4 py-2 text-sm font-semibold text-gold">
-              <Crown className="h-4 w-4" />
+              <Crown className="h-4 w-4" aria-hidden />
               Woosh Prime
+              <WooshIllustration name="doorstep-pin" width={24} height={32} className="opacity-70" />
             </div>
             <h2 className="font-display text-4xl font-bold leading-tight text-white sm:text-5xl">
               Luxury care at your <span className="text-gold">doorstep</span>
@@ -49,26 +51,29 @@ export function WooshPrimeSection() {
                 </li>
               ))}
             </ul>
-            <Button onClick={openAuthModal} className="bg-gradient-to-r from-gold to-yellow-300 text-charcoal hover:scale-[1.02]">
+            <Button
+              onClick={openAuthModal}
+              className="bg-gradient-to-r from-gold to-yellow-300 text-charcoal hover:scale-[1.02]"
+            >
               Book Prime Experience
             </Button>
           </div>
 
-          <div className="relative overflow-hidden rounded-3xl border border-gold/25 shadow-[0_0_40px_rgba(212,175,55,0.15)]">
-            <div className="relative aspect-[4/5] min-h-[360px]">
+          <div className="relative overflow-hidden rounded-3xl border border-gold/25 bg-charcoal shadow-[0_0_40px_rgba(212,175,55,0.12)]">
+            <div className="relative aspect-[16/10] w-full sm:aspect-[3/2]">
               <Image
                 src="/assets/testimonials/prime-poster.jpg"
                 alt="Woosh Prime premium vehicle care"
                 fill
-                className="object-cover"
-                sizes="500px"
+                className="object-contain object-center p-1 sm:object-cover sm:object-[center_45%] sm:p-0"
+                sizes="(max-width: 1024px) 100vw, 520px"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6">
+              <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/20 to-transparent" />
+              <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6">
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-gold">
                   Priority Service
                 </p>
-                <p className="mt-2 text-2xl font-bold text-white">Just for you</p>
+                <p className="mt-2 text-xl font-bold text-white sm:text-2xl">Just for you</p>
               </div>
             </div>
           </div>

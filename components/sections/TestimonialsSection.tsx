@@ -13,7 +13,7 @@ export function TestimonialsSection() {
         <SectionHeading
           eyebrow="Customer Testimonials"
           title="Loved by vehicle owners"
-          subtitle="Real stories from Woosh customers — video testimonials coming soon with polished placeholders ready for upload."
+          subtitle="Verified customer videos will be published here — no placeholder names or ratings until content is ready."
         />
 
         <Carousel slideClassName="basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4 px-3">

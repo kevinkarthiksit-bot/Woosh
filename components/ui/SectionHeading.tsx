@@ -38,20 +38,17 @@ export function SectionHeading({
       className={cn(
         "mb-12 max-w-3xl",
         align === "center" && "mx-auto text-center",
+        align === "left" && "text-left",
         className,
       )}
       {...props}
     >
-      {eyebrow ? (
-        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-cyan">
-          {eyebrow}
-        </p>
-      ) : null}
-      <h2 className="font-display text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
-        {renderTitle()}
-      </h2>
+      {eyebrow ? <p className="mb-3 text-eyebrow text-cyan">{eyebrow}</p> : null}
+      <h2 className="font-display text-h2 text-white">{renderTitle()}</h2>
       {subtitle ? (
-        <p className="mt-4 text-base leading-relaxed text-white/70 sm:text-lg">{subtitle}</p>
+        <p className={cn("mt-4 max-w-prose text-body-lg text-white/75", align === "center" && "mx-auto")}>
+          {subtitle}
+        </p>
       ) : null}
     </div>
   );

@@ -18,6 +18,10 @@
 # production
 /build
 
+# media drop zone (see media-incoming/README.md)
+/media-incoming/*
+!/media-incoming/README.md
+
 # misc
 .cursor/
 .DS_Store
@@ -35,3 +39,4 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.vercel
