@@ -4,7 +4,7 @@ import { trustMetrics, hasLiveTrustContent } from "@/lib/trust";
 export function TrustStrip() {
   if (hasLiveTrustContent) {
     return (
-      <section className="border-y border-white/10 bg-navy/50 py-8" aria-label="Woosh highlights">
+      <section className="border-y border-black/8 bg-white py-8" aria-label="Woosh highlights">
         <Container>
           <ul className="grid gap-6 sm:grid-cols-3">
             {trustMetrics
@@ -12,7 +12,7 @@ export function TrustStrip() {
               .map((metric) => (
                 <li key={metric.id} className="text-center">
                   <p className="font-display text-3xl font-bold text-cyan">{metric.value}</p>
-                  <p className="mt-1 text-caption text-white/70">{metric.label}</p>
+                  <p className="mt-1 text-caption text-muted">{metric.label}</p>
                 </li>
               ))}
           </ul>
@@ -22,9 +22,9 @@ export function TrustStrip() {
   }
 
   return (
-    <section className="border-y border-white/10 bg-navy/30 py-6" aria-label="Trust and quality">
+    <section className="border-y border-black/8 bg-white py-6" aria-label="Trust and quality">
       <Container>
-        <p className="text-center text-caption text-white/60">
+        <p className="text-center text-caption text-muted">
           Customer stories and live stats will appear here as Woosh grows — we only publish verified
           numbers and real testimonials.
         </p>

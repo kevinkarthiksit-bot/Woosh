@@ -8,7 +8,7 @@ import { testimonials } from "@/lib/services";
 
 export function TestimonialsSection() {
   return (
-    <section id="testimonials" className="section-padding bg-navy/40">
+    <section id="testimonials" className="section-padding bg-background-muted">
       <Container>
         <SectionHeading
           eyebrow="Customer Testimonials"

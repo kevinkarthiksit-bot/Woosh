@@ -27,7 +27,7 @@ export function VideoCard({
   return (
     <div
       className={cn(
-        "group relative overflow-hidden rounded-3xl border border-white/10 bg-navy/80",
+        "group relative overflow-hidden rounded-3xl border border-black/8 bg-white shadow-card",
         className,
       )}
     >
@@ -43,11 +43,11 @@ export function VideoCard({
         ) : (
           <>
             <Image src={poster} alt={title} fill className="object-cover" sizes="400px" />
-            <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/20 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1d1d1f]/70 via-[#1d1d1f]/15 to-transparent" />
             <button
               type="button"
               onClick={() => videoSrc && setPlaying(true)}
-              className="focus-ring absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-cyan/90 text-charcoal transition group-hover:scale-110"
+              className="focus-ring absolute left-1/2 top-1/2 flex h-16 w-16 min-h-[44px] min-w-[44px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-cyan text-white shadow-accent transition group-hover:scale-110"
               aria-label={`Play ${title} video`}
             >
               <Play className="ml-1 h-7 w-7 fill-current" />
@@ -56,9 +56,9 @@ export function VideoCard({
         )}
       </div>
       <div className="space-y-2 p-5">
-        <h3 className="text-lg font-semibold text-white">{title}</h3>
+        <h3 className="text-lg font-semibold text-foreground">{title}</h3>
         {subtitle ? <p className="text-sm text-cyan">{subtitle}</p> : null}
-        {quote ? <p className="text-sm leading-relaxed text-white/70">&ldquo;{quote}&rdquo;</p> : null}
+        {quote ? <p className="text-sm leading-relaxed text-muted">&ldquo;{quote}&rdquo;</p> : null}
       </div>
     </div>
   );

@@ -47,7 +47,7 @@ export function AuthModal() {
     <Modal open={isOpen} onClose={handleClose} title="Login / Sign Up">
       {submitted ? (
         <div className="space-y-4 text-center">
-          <p className="text-white/80">
+          <p className="text-muted">
             Thanks! We&apos;ll continue your {mode === "phone" ? "phone" : "email"} sign-in flow
             once authentication is connected.
           </p>
@@ -57,7 +57,7 @@ export function AuthModal() {
         </div>
       ) : (
         <div className="space-y-5">
-          <div className="grid grid-cols-2 gap-2 rounded-full border border-white/10 p-1">
+          <div className="grid grid-cols-2 gap-2 rounded-full border border-black/8 bg-background-muted p-1">
             {(["phone", "email"] as AuthMode[]).map((option) => (
               <button
                 key={option}
@@ -67,8 +67,8 @@ export function AuthModal() {
                   setError("");
                 }}
                 className={cn(
-                  "focus-ring rounded-full px-4 py-2 text-sm font-medium capitalize transition",
-                  mode === option ? "bg-cyan text-charcoal" : "text-white/70 hover:text-white",
+                  "focus-ring min-h-[44px] rounded-full px-4 py-2 text-sm font-medium capitalize transition",
+                  mode === option ? "bg-cyan text-white" : "text-muted hover:text-foreground",
                 )}
               >
                 {option}
@@ -77,7 +77,7 @@ export function AuthModal() {
           </div>
 
           <div>
-            <label htmlFor="auth-input" className="mb-2 block text-sm font-medium text-white/80">
+            <label htmlFor="auth-input" className="mb-2 block text-sm font-medium text-foreground">
               {mode === "phone" ? "Phone number" : "Email address"}
             </label>
             <input
@@ -86,9 +86,9 @@ export function AuthModal() {
               value={value}
               onChange={(event) => setValue(event.target.value)}
               placeholder={mode === "phone" ? "+91 98765 43210" : "you@example.com"}
-              className="focus-ring w-full rounded-2xl border border-white/10 bg-charcoal px-4 py-3 text-white placeholder:text-white/30"
+              className="focus-ring w-full rounded-2xl border border-black/12 bg-white px-4 py-3 text-foreground placeholder:text-muted/60"
             />
-            {error ? <p className="mt-2 text-sm text-red-400">{error}</p> : null}
+            {error ? <p className="mt-2 text-sm text-red-600">{error}</p> : null}
           </div>
 
           <Button onClick={handleContinue} className="w-full">

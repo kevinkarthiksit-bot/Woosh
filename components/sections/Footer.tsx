@@ -19,7 +19,7 @@ export function Footer() {
   const { goToSection } = useSectionNav();
 
   return (
-    <footer className="border-t border-white/10 bg-charcoal py-12">
+    <footer className="border-t border-black/8 bg-background-muted py-12">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-4 lg:px-8">
         <div className="space-y-4 lg:col-span-2">
           <div className="flex items-center gap-3">
@@ -31,32 +31,32 @@ export function Footer() {
               className="rounded-xl"
             />
             <div>
-              <p className="font-bold text-white">{brand.name}</p>
+              <p className="font-bold text-foreground">{brand.name}</p>
               <p className="text-sm text-cyan">{brand.tagline}</p>
             </div>
           </div>
-          <p className="max-w-sm text-sm leading-relaxed text-white/65">
+          <p className="max-w-sm text-sm leading-relaxed text-muted">
             {brand.motto} Premium doorstep vehicle care for cars, bikes, autos, and more.
           </p>
           <AppDownloadButtons size="sm" />
         </div>
 
         <div>
-          <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-white/80">
+          <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-foreground/80">
             Quick Links
           </h3>
           <div className="flex flex-col gap-3">
             <button
               type="button"
               onClick={() => goToSection("#contact")}
-              className="focus-ring w-fit text-sm text-white/70 transition hover:text-cyan"
+              className="focus-ring w-fit text-sm text-muted transition hover:text-cyan"
             >
               Contact Us
             </button>
             <button
               type="button"
               onClick={() => goToSection("#blogs")}
-              className="focus-ring w-fit text-sm text-white/70 transition hover:text-cyan"
+              className="focus-ring w-fit text-sm text-muted transition hover:text-cyan"
             >
               Blogs
             </button>
@@ -64,7 +64,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-white/80">
+          <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-foreground/80">
             Follow Woosh
           </h3>
           <div className="flex gap-3">
@@ -77,7 +77,7 @@ export function Footer() {
                 key={label}
                 href={href}
                 aria-label={label}
-                className="focus-ring inline-flex rounded-full border border-white/10 p-3 text-white/70 transition hover:border-cyan/40 hover:text-cyan"
+                className="focus-ring inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-black/10 p-3 text-muted transition hover:border-cyan/40 hover:text-cyan"
               >
                 <Icon className="h-5 w-5" />
               </a>
@@ -86,9 +86,9 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="mx-auto mt-10 max-w-7xl border-t border-white/10 px-4 pt-6 text-center text-sm text-white/50 sm:px-6 lg:px-8">
+      <div className="mx-auto mt-10 max-w-7xl border-t border-black/8 px-4 pt-6 text-center text-sm text-muted sm:px-6 lg:px-8">
         <p>© {new Date().getFullYear()} Woosh. All rights reserved.</p>
-        <p className="mt-2 text-xs text-white/35" aria-label="Site build version">
+        <p className="mt-2 text-xs text-muted/70" aria-label="Site build version">
           {formatBuildLabel()}
         </p>
       </div>

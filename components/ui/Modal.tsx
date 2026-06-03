@@ -50,25 +50,25 @@ export function Modal({ open, onClose, title, children }: ModalProps) {
       role="presentation"
       onClick={onClose}
     >
-      <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
       <div
         ref={dialogRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
         className={cn(
-          "relative z-10 w-full max-w-md rounded-3xl border border-cyan/20 bg-navy p-6 shadow-2xl glow-cyan",
+          "relative z-10 w-full max-w-md rounded-3xl border border-black/8 bg-white p-6 shadow-card",
         )}
         onClick={(event) => event.stopPropagation()}
       >
         <div className="mb-6 flex items-start justify-between gap-4">
-          <h2 id={titleId} className="text-2xl font-bold text-white">
+          <h2 id={titleId} className="text-2xl font-bold text-foreground">
             {title}
           </h2>
           <button
             type="button"
             onClick={onClose}
-            className="focus-ring rounded-full p-2 text-white/70 transition hover:bg-white/10 hover:text-white"
+            className="focus-ring min-h-[44px] min-w-[44px] rounded-full p-2 text-muted transition hover:bg-black/5 hover:text-foreground"
             aria-label="Close modal"
           >
             <X className="h-5 w-5" />

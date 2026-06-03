@@ -11,18 +11,7 @@ export function WooshPrimeSection() {
   const { openAuthModal } = useAuthModal();
 
   return (
-    <section className="relative overflow-hidden border-y border-gold/20">
-      <div className="absolute inset-0">
-        <Image
-          src="/assets/testimonials/prime-poster.jpg"
-          alt=""
-          fill
-          className="object-cover object-center opacity-25"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-charcoal via-charcoal/95 to-charcoal/70" />
-      </div>
-
+    <section className="relative overflow-hidden border-y border-gold/20 bg-background-warm">
       <Container className="relative section-padding">
         <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="space-y-6">
@@ -31,10 +20,10 @@ export function WooshPrimeSection() {
               Woosh Prime
               <WooshIllustration name="doorstep-pin" width={24} height={32} className="opacity-70" />
             </div>
-            <h2 className="font-display text-4xl font-bold leading-tight text-white sm:text-5xl">
+            <h2 className="font-display text-h2 text-foreground sm:text-4xl lg:text-5xl">
               Luxury care at your <span className="text-gold">doorstep</span>
             </h2>
-            <p className="max-w-xl text-lg leading-relaxed text-white/75">
+            <p className="max-w-xl text-body-lg text-muted">
               Priority booking, premium products, and showroom finishes — reserved for members who
               expect the best every time.
             </p>
@@ -45,7 +34,7 @@ export function WooshPrimeSection() {
                 "Premium product line",
                 "Dedicated priority support",
               ].map((item) => (
-                <li key={item} className="flex items-center gap-2 text-sm text-white/80">
+                <li key={item} className="flex items-center gap-2 text-sm text-foreground/80">
                   <span className="h-1.5 w-1.5 rounded-full bg-gold" />
                   {item}
                 </li>
@@ -53,13 +42,13 @@ export function WooshPrimeSection() {
             </ul>
             <Button
               onClick={openAuthModal}
-              className="bg-gradient-to-r from-gold to-yellow-300 text-charcoal hover:scale-[1.02]"
+              className="bg-gradient-to-r from-gold to-yellow-300 text-foreground hover:scale-[1.02]"
             >
               Book Prime Experience
             </Button>
           </div>
 
-          <div className="relative overflow-hidden rounded-3xl border border-gold/25 bg-charcoal shadow-[0_0_40px_rgba(212,175,55,0.12)]">
+          <div className="relative overflow-hidden rounded-3xl border border-gold/20 bg-white shadow-card">
             <div className="relative aspect-[16/10] w-full sm:aspect-[3/2]">
               <Image
                 src="/assets/testimonials/prime-poster.jpg"
@@ -68,7 +57,7 @@ export function WooshPrimeSection() {
                 className="object-contain object-center p-1 sm:object-cover sm:object-[center_45%] sm:p-0"
                 sizes="(max-width: 1024px) 100vw, 520px"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1d1d1f]/80 via-transparent to-transparent" />
               <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6">
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-gold">
                   Priority Service

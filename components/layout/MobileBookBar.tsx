@@ -24,7 +24,7 @@ export function MobileBookBar() {
 
   return (
     <div
-      className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-charcoal/95 px-4 py-3 backdrop-blur-md lg:hidden"
+      className="fixed inset-x-0 bottom-0 z-40 border-t border-black/8 bg-white/95 px-4 py-3 pb-safe backdrop-blur-md lg:hidden"
       role="region"
       aria-label="Quick booking"
     >

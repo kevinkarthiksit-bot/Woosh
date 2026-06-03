@@ -9,7 +9,7 @@ export function ServicesSection() {
   const rest = services.filter((service) => !service.featured);
 
   return (
-    <section id="services" className="section-padding bg-navy/40">
+    <section id="services" className="section-padding bg-background-muted">
       <Container>
         <SectionHeading
           eyebrow="Our Services"

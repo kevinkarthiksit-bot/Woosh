@@ -7,6 +7,8 @@ interface SectionHeadingProps extends HTMLAttributes<HTMLDivElement> {
   highlight?: string;
   subtitle?: string;
   align?: "left" | "center";
+  /** Use on dark image overlays (hero tiles) */
+  onDark?: boolean;
 }
 
 export function SectionHeading({
@@ -15,6 +17,7 @@ export function SectionHeading({
   highlight,
   subtitle,
   align = "center",
+  onDark = false,
   className,
   ...props
 }: SectionHeadingProps) {
@@ -27,7 +30,7 @@ export function SectionHeading({
     return (
       <>
         {before}
-        <span className="text-gradient">{highlight}</span>
+        <span className={onDark ? "text-cyan" : "text-gradient"}>{highlight}</span>
         {after}
       </>
     );
@@ -43,10 +46,25 @@ export function SectionHeading({
       )}
       {...props}
     >
-      {eyebrow ? <p className="mb-3 text-eyebrow text-cyan">{eyebrow}</p> : null}
-      <h2 className="font-display text-h2 text-white">{renderTitle()}</h2>
+      {eyebrow ? (
+        <p className={cn("mb-3 text-eyebrow", onDark ? "text-cyan" : "text-cyan")}>{eyebrow}</p>
+      ) : null}
+      <h2
+        className={cn(
+          "font-display text-h2",
+          onDark ? "text-white" : "text-foreground",
+        )}
+      >
+        {renderTitle()}
+      </h2>
       {subtitle ? (
-        <p className={cn("mt-4 max-w-prose text-body-lg text-white/75", align === "center" && "mx-auto")}>
+        <p
+          className={cn(
+            "mt-4 max-w-prose text-body-lg",
+            onDark ? "text-white/80" : "text-muted",
+            align === "center" && "mx-auto",
+          )}
+        >
           {subtitle}
         </p>
       ) : null}

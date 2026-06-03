@@ -1,19 +1,33 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-charcoal: #050a18;
-  --color-navy: #0a1628;
+  --color-background: #ffffff;
+  --color-background-muted: #f5f5f7;
+  --color-background-warm: #faf8f0;
+  --color-foreground: #1d1d1f;
+  --color-muted: #6e6e73;
+  --color-border: rgba(0, 0, 0, 0.08);
+  --color-charcoal: #1d1d1f;
+  --color-navy: #f5f5f7;
   --color-cyan: #00bfff;
   --color-blue: #0070ff;
   --color-gold: #d4af37;
   --color-eco: #22c55e;
-  --color-surface: #f8fafc;
+  --color-surface: #ffffff;
   --font-sans: var(--font-body);
   --font-display: var(--font-display-fam);
 }
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
+  --background: #ffffff;
+  --background-muted: #f5f5f7;
+  --background-warm: #faf8f0;
+  --foreground: #1d1d1f;
+  --foreground-muted: #6e6e73;
+  --border: rgba(0, 0, 0, 0.08);
+  --accent: #00bfff;
+  --accent-strong: #0070ff;
 }
 
 html {
@@ -21,9 +35,9 @@ html {
 }
 
 body {
-  background: var(--color-charcoal);
-  color: white;
-  font-family: var(--font-body), system-ui, sans-serif;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), system-ui, -apple-system, sans-serif;
 }
 
 .font-display {
@@ -39,14 +53,14 @@ body {
 }
 
 .text-h1 {
-  font-size: clamp(1.75rem, 1.35rem + 1.75vw, 3rem);
+  font-size: clamp(1.875rem, 1.5rem + 2vw, 3rem);
   font-weight: 700;
   line-height: 1.12;
   letter-spacing: -0.02em;
 }
 
 .text-h2 {
-  font-size: clamp(1.625rem, 1.25rem + 1.5vw, 2.5rem);
+  font-size: clamp(1.875rem, 1.4rem + 1.75vw, 3rem);
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.02em;
@@ -64,7 +78,7 @@ body {
 }
 
 .text-body-lg {
-  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
   line-height: 1.65;
 }
 
@@ -83,8 +97,8 @@ body {
   top: -100%;
   z-index: 200;
   border-radius: 0.5rem;
-  background: var(--color-cyan);
-  color: var(--color-charcoal);
+  background: var(--accent);
+  color: #ffffff;
   padding: 0.5rem 1rem;
   font-weight: 600;
   font-size: 0.875rem;
@@ -108,22 +122,35 @@ body {
   }
 }
 
+.shadow-accent {
+  box-shadow: 0 4px 14px rgba(0, 112, 255, 0.2);
+}
+
+.shadow-accent-hover:hover {
+  box-shadow: 0 6px 20px rgba(0, 112, 255, 0.28);
+}
+
+.shadow-card {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
 .glow-cyan {
-  box-shadow: 0 0 24px rgba(0, 191, 255, 0.35);
+  box-shadow: 0 4px 14px rgba(0, 112, 255, 0.2);
 }
 
 .glow-cyan-hover:hover {
-  box-shadow: 0 0 32px rgba(0, 191, 255, 0.5);
+  box-shadow: 0 6px 20px rgba(0, 112, 255, 0.28);
 }
 
 .glass-panel {
-  background: rgba(10, 22, 40, 0.72);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(0, 191, 255, 0.15);
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #ffffff 0%, #00bfff 100%);
+  background: linear-gradient(135deg, #1d1d1f 0%, #00bfff 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -134,8 +161,12 @@ body {
 }
 
 .focus-ring:focus-visible {
-  outline: 2px solid var(--color-cyan);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
+}
+
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 @keyframes ken-burns {

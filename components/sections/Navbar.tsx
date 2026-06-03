@@ -34,7 +34,7 @@ export function Navbar() {
       className={cn(
         "fixed inset-x-0 z-50 transition-all duration-300",
         isSiteLive ? "top-0" : "top-10",
-        scrolled ? "glass-panel border-b border-white/10 py-2.5 shadow-lg" : "bg-transparent py-4",
+        scrolled ? "glass-panel border-b border-black/8 py-2.5 shadow-card" : "bg-transparent py-4",
       )}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -46,7 +46,7 @@ export function Navbar() {
             handleNavClick("#home");
           }}
         >
-          <span className="relative flex shrink-0 items-center justify-center rounded-2xl bg-charcoal/40 p-1 ring-1 ring-cyan/20 transition group-hover:ring-cyan/50 group-hover:shadow-[0_0_20px_rgba(0,191,255,0.25)] xl:hidden">
+          <span className="relative flex shrink-0 items-center justify-center rounded-2xl bg-white/80 p-1 ring-1 ring-black/8 transition group-hover:ring-cyan/40 group-hover:shadow-card xl:hidden">
             <Image
               src="/assets/brand/logo.jpeg"
               alt="Woosh logo"
@@ -56,7 +56,7 @@ export function Navbar() {
               priority
             />
           </span>
-          <span className="relative hidden shrink-0 items-center justify-center rounded-2xl bg-charcoal/30 p-1.5 ring-1 ring-cyan/15 transition group-hover:ring-cyan/40 group-hover:shadow-[0_0_24px_rgba(0,191,255,0.2)] xl:flex">
+          <span className="relative hidden shrink-0 items-center justify-center rounded-2xl bg-white/80 p-1.5 ring-1 ring-black/8 transition group-hover:ring-cyan/30 group-hover:shadow-card xl:flex">
             <Image
               src="/assets/brand/logo-full.jpeg"
               alt="Woosh"
@@ -67,7 +67,7 @@ export function Navbar() {
             />
           </span>
           <div className="hidden sm:block xl:hidden">
-            <p className="text-sm font-bold uppercase tracking-[0.18em] text-white">Woosh</p>
+            <p className="text-sm font-bold uppercase tracking-[0.18em] text-foreground">Woosh</p>
             <p className="text-xs text-cyan">Doorstep Vehicle Care</p>
           </div>
         </Link>
@@ -81,7 +81,7 @@ export function Navbar() {
                 event.preventDefault();
                 handleNavClick(link.href);
               }}
-              className="focus-ring text-sm font-medium text-white/75 transition hover:text-cyan"
+              className="focus-ring text-sm font-medium text-foreground/75 transition hover:text-cyan"
             >
               {link.label}
             </Link>
@@ -94,7 +94,7 @@ export function Navbar() {
           </Button>
           <button
             type="button"
-            className="focus-ring rounded-full border border-white/10 p-2 text-white xl:hidden"
+            className="focus-ring flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-black/10 p-2 text-foreground xl:hidden"
             onClick={() => setMobileOpen((open) => !open)}
             aria-expanded={mobileOpen}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
@@ -105,7 +105,7 @@ export function Navbar() {
       </div>
 
       {mobileOpen ? (
-        <div className="glass-panel border-t border-white/10 xl:hidden">
+        <div className="glass-panel border-t border-black/8 xl:hidden">
           <nav className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-4 sm:px-6" aria-label="Mobile">
             {navLinks.map((link) => (
               <Link
@@ -115,7 +115,7 @@ export function Navbar() {
                   event.preventDefault();
                   handleNavClick(link.href);
                 }}
-                className="focus-ring rounded-xl px-3 py-3 text-sm font-medium text-white/80 hover:bg-white/5 hover:text-cyan"
+                className="focus-ring min-h-[44px] rounded-xl px-3 py-3 text-sm font-medium text-foreground/80 hover:bg-black/5 hover:text-cyan"
               >
                 {link.label}
               </Link>

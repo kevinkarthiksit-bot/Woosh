@@ -13,10 +13,10 @@ export function ServiceDetailClient({ service }: { service: Service }) {
 
   return (
     <div className="pt-28">
-      <section className="relative min-h-[420px] overflow-hidden sm:min-h-[520px]">
+      <section className="relative min-h-[420px] overflow-hidden bg-white sm:min-h-[520px]">
         <div className="absolute inset-0 min-h-[420px] sm:min-h-[520px]">
           <Image src={service.image} alt={service.title} fill className="object-cover" priority />
-          <div className="absolute inset-0 bg-gradient-to-r from-charcoal via-charcoal/85 to-charcoal/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/70 to-white/30" />
         </div>
         <Container className="relative py-20 sm:py-28">
           <Link href="/#services" className="focus-ring mb-6 inline-flex text-sm text-cyan hover:underline">
@@ -26,8 +26,8 @@ export function ServiceDetailClient({ service }: { service: Service }) {
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan">
               Woosh Service
             </p>
-            <h1 className="text-4xl font-bold text-white sm:text-5xl">{service.title}</h1>
-            <p className="text-lg leading-relaxed text-white/75">{service.detailDescription}</p>
+            <h1 className="font-display text-h1 text-foreground">{service.title}</h1>
+            <p className="text-body-lg text-muted">{service.detailDescription}</p>
             {service.pricing ? (
               <p className="inline-flex rounded-full border border-gold/30 bg-gold/10 px-4 py-2 text-sm font-semibold text-gold">
                 {service.pricing}
@@ -38,21 +38,21 @@ export function ServiceDetailClient({ service }: { service: Service }) {
         </Container>
       </section>
 
-      <section className="section-padding">
+      <section className="section-padding bg-background-muted">
         <Container>
           <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
             <div>
-              <h2 className="mb-6 text-3xl font-bold text-white">What&apos;s included</h2>
+              <h2 className="mb-6 font-display text-h2 text-foreground">What&apos;s included</h2>
               <ul className="space-y-4">
                 {service.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-3 text-white/80">
+                  <li key={feature} className="flex items-start gap-3 text-foreground/80">
                     <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-cyan" />
                     <span>{feature}</span>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="overflow-hidden rounded-3xl border border-white/10">
+            <div className="overflow-hidden rounded-3xl border border-black/8 bg-white shadow-card">
               <video controls poster={service.poster16x9} className="aspect-video w-full object-cover">
                 <source src={service.detailVideo} type="video/mp4" />
               </video>

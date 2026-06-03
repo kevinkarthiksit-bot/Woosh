@@ -18,7 +18,7 @@ export function ServiceTile({ service, className, stagger = false }: ServiceTile
     <Link
       href={`/services/${service.slug}`}
       className={cn(
-        "group relative block overflow-hidden rounded-3xl transition-all duration-500 hover:glow-cyan hover:-translate-y-1",
+        "group relative block overflow-hidden rounded-3xl shadow-card transition-all duration-500 hover:shadow-accent hover:-translate-y-1",
         service.goldAccent && "ring-1 ring-gold/40 hover:ring-gold/70",
         stagger && "lg:translate-y-4",
         className,
@@ -33,7 +33,7 @@ export function ServiceTile({ service, className, stagger = false }: ServiceTile
           style={{ objectPosition }}
           sizes="(max-width:768px) 100vw, 400px"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1d1d1f] via-[#1d1d1f]/50 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-cyan/10 opacity-0 transition duration-500 group-hover:opacity-100" />
 
         <div className="absolute left-4 top-4 flex items-center gap-2">
@@ -52,7 +52,7 @@ export function ServiceTile({ service, className, stagger = false }: ServiceTile
         </div>
 
         {service.tilePricing ? (
-          <span className="absolute right-4 top-4 rounded-full bg-charcoal/75 px-3 py-1 text-xs font-semibold text-cyan backdrop-blur-sm">
+          <span className="absolute right-4 top-4 rounded-full bg-[#1d1d1f]/75 px-3 py-1 text-xs font-semibold text-cyan backdrop-blur-sm">
             {service.tilePricing}
           </span>
         ) : null}

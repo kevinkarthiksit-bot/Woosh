@@ -9,10 +9,10 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    "bg-gradient-to-r from-cyan to-blue text-white glow-cyan glow-cyan-hover hover:scale-[1.02]",
+    "bg-gradient-to-r from-cyan to-blue text-white shadow-accent shadow-accent-hover hover:scale-[1.02]",
   secondary:
-    "border border-cyan/40 bg-transparent text-white hover:border-cyan hover:bg-cyan/10",
-  ghost: "bg-transparent text-white/80 hover:text-white hover:bg-white/5",
+    "border border-black/12 bg-transparent text-foreground hover:border-cyan/50 hover:bg-cyan/5",
+  ghost: "bg-transparent text-muted hover:text-foreground hover:bg-black/5",
 };
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -22,7 +22,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         type={type}
         className={cn(
-          "focus-ring inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-50",
+          "focus-ring inline-flex min-h-[44px] items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-50",
           variantClasses[variant],
           className,
         )}

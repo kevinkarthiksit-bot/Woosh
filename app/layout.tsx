@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { DM_Sans, Outfit } from "next/font/google";
 import { HashScrollHandler } from "@/components/HashScrollHandler";
 import { AuthModalProvider } from "@/components/providers/AuthModalProvider";
@@ -32,6 +32,11 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -47,7 +52,7 @@ export default function RootLayout({
           <HashScrollHandler />
           <PreviewBanner />
           <Navbar />
-          <main id="main" className="pb-20 lg:pb-0">
+          <main id="main" className="pb-24 lg:pb-0">
             {children}
           </main>
           <Footer />

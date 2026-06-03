@@ -96,7 +96,7 @@ export function AppDownloadButtons({
         />
       </div>
       {showComingSoon && !brand.appsLive ? (
-        <p className="text-caption text-white/55">Mobile apps coming soon — badges shown for preview.</p>
+        <p className="text-caption text-muted">Mobile apps coming soon — badges shown for preview.</p>
       ) : null}
     </div>
   );
