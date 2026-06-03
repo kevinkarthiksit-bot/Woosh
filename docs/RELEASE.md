@@ -17,10 +17,9 @@ You can merge to `main` continuously without tagging; create a **named release**
 1. **Media** — If assets changed: `pnpm sync:media` (and `process:posters` / `generate:videos` if needed). Commit under `public/assets/` only, not `out/`.
 2. **Verify locally**
    ```bash
-   pnpm lint
-   pnpm build
+   pnpm verify
    ```
-3. **Merge** — All changes on `main` via PR (Vercel production deploys automatically).
+3. **Merge** — All changes on `main` via PR (Vercel production deploys automatically). See [`docs/WORKFLOW.md`](WORKFLOW.md).
 4. **Version** — Bump `version` in `package.json`.
 5. **Changelog** — Move entries from `## [Unreleased]` to `## [X.Y.Z] - YYYY-MM-DD` in `CHANGELOG.md`.
 6. **Commit** — `chore(release): vX.Y.Z` on `main`.

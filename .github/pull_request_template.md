@@ -1,6 +1,6 @@
 ## Summary
 
-<!-- What changed and why -->
+<!-- What changed and why. Branch should be feature/… or fix/… -->
 
 ## Vercel preview
 
@@ -10,7 +10,7 @@
 
 ## Checklist
 
-- [ ] `pnpm lint` and `pnpm build` pass locally (or CI is green)
+- [ ] `pnpm verify` passes locally (or CI **lint-and-build** is green)
 - [ ] Changelog updated under `## [Unreleased]` in `CHANGELOG.md` (if user-facing)
 - [ ] Media synced (`pnpm sync:media`) and `public/assets` committed if assets changed
 - [ ] No `out/`, `.next/`, or `.vercel/` committed

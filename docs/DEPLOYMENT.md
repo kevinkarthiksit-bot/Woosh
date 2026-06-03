@@ -2,16 +2,14 @@
 
 Production deploys are driven by **Git**, not manual CLI uploads. Each push to `main` triggers a production build; each pull request gets a **Preview** deployment URL.
 
+**Day-to-day development:** see [`docs/WORKFLOW.md`](WORKFLOW.md).
+
 ## One-time: connect GitHub to Vercel
 
-1. Push this repo to GitHub (if not already).
+1. Push this repo to GitHub (if not already): [kevinkarthiksit-bot/Woosh](https://github.com/kevinkarthiksit-bot/Woosh).
 2. [Vercel Dashboard](https://vercel.com) → **woosh-website** → **Settings → Git** → connect the GitHub repository.
 3. Set **Production Branch** to `main`.
-4. Confirm project settings (also in [`vercel.json`](../vercel.json)):
-   - **Install Command:** `pnpm install`
-   - **Build Command:** `pnpm build`
-   - **Output Directory:** `out` (required for static export)
-   - **Node.js:** 22.x (match [`.github/workflows/ci.yml`](../.github/workflows/ci.yml))
+4. Confirm project settings (also in [`vercel.json`](../vercel.json)) — see [Verify Vercel project settings](#verify-vercel-project-settings) below.
 5. **Environment variables** (Vercel → Settings → Environment Variables):
 
    | Variable | Preview | Production | Notes |
@@ -20,9 +18,26 @@ Production deploys are driven by **Git**, not manual CLI uploads. Each push to `
    | `NEXT_PUBLIC_SITE_VERSION` | *(optional)* | *(optional)* | Defaults from `package.json` via `next.config.ts` |
    | `VERCEL_GIT_COMMIT_SHA` | *(automatic)* | *(automatic)* | Mapped to footer label via `next.config.ts` |
 
-6. **Domains:** add `preview.yourdomain.com` for Preview only; add `www` only when launch-ready (see below).
+6. **Domains:** add `preview.getwoosh.com` for Preview only; add `www.getwoosh.com` only when launch-ready (see below).
 
 After Git is connected, **do not** use `vercel deploy --prod` for routine releases—merge to `main` instead.
+
+## Verify Vercel project settings
+
+Vercel → **woosh-website** → **Settings → General** (and **Build & Development Settings**):
+
+| Dashboard field | Required value |
+|-----------------|----------------|
+| Production Branch | `main` |
+| Framework Preset | Next.js (or Other with commands below) |
+| Build Command | `pnpm build` |
+| Output Directory | **`out`** |
+| Install Command | `pnpm install` |
+| Node.js Version | 22.x |
+
+These match [`vercel.json`](../vercel.json). Static export writes to `out/`; if Output Directory is `public` or `.`, assets and pages will 404 on Vercel.
+
+Locally after `pnpm build`, confirm `out/assets` exists (postbuild copies `public/assets`).
 
 ## Day-to-day workflow
 
@@ -31,18 +46,25 @@ After Git is connected, **do not** use `vercel deploy --prod` for routine releas
 3. Share the preview URL for review.
 4. Merge to `main` → Vercel deploys **Production** automatically.
 
+Full loop: [`docs/WORKFLOW.md`](WORKFLOW.md).
+
 Named releases (semver, changelog, git tags): see [`docs/RELEASE.md`](RELEASE.md).
 
-## Client preview domain (not public www)
+## Client preview domain (getwoosh.com)
 
-1. Vercel → **Settings → Domains** → add `preview.yourdomain.com` (assign to Preview deployments).
-2. DNS (e.g. GoDaddy) → **CNAME** `preview` → value from Vercel.
-3. Share `https://preview.yourdomain.com` — do **not** point `www` at production until launch.
+1. Vercel → **Settings → Domains** → add **`preview.getwoosh.com`** (assign to **Preview** deployments).
+2. GoDaddy → **getwoosh.com** → **DNS** → add record:
+   - **Type:** `A`
+   - **Name:** `preview`
+   - **Value:** `76.76.21.21`
+   - **TTL:** 1 Hour (default)
+3. Wait for Vercel to show **Valid Configuration** (often 5–30 minutes).
+4. Share `https://preview.getwoosh.com` — do **not** point `www` at production until launch.
 
 ## Launch (go live)
 
 1. Set `NEXT_PUBLIC_SITE_LIVE` = `true` on **Production** in Vercel.
-2. Attach production domain (`www` / apex) in Vercel.
+2. Attach production domains (`www.getwoosh.com` and optionally `getwoosh.com`) in Vercel; follow DNS records Vercel shows for each.
 3. Smoke-test: no preview banner, `robots` allows indexing, footer shows `Site vX.Y.Z · <sha>`.
 4. Record the flip in [`docs/DECISIONS.md`](DECISIONS.md).
 
@@ -72,5 +94,6 @@ Or: `vercel build --prod --yes` then `vercel deploy --prebuilt --prod --yes`.
 
 ## Related docs
 
+- [`docs/WORKFLOW.md`](WORKFLOW.md) — branch model, PR loop, branch protection
 - [`docs/RELEASE.md`](RELEASE.md) — version bumps, changelog, tags
 - [`CHANGELOG.md`](../CHANGELOG.md) — release history

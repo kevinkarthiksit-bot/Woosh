@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Development pipeline docs (`docs/WORKFLOW.md`) and `pnpm verify` script
 - Git-connected Vercel deploy workflow and `out` static export configuration
 - GitHub Actions CI (lint + build)
 - Site version label in footer and build meta tags

@@ -8,6 +8,7 @@
     "build": "next build && node scripts/postbuild-copy-public.mjs",
     "start": "next start",
     "lint": "next lint",
+    "verify": "pnpm lint && pnpm build",
     "process:posters": "node scripts/process-posters.mjs",
     "generate:videos": "node scripts/generate-videos.mjs",
     "sync:media": "node scripts/sync-media-to-public.mjs",

@@ -57,7 +57,10 @@ pnpm install
 pnpm dev      # http://localhost:3000
 pnpm build
 pnpm lint
+pnpm verify  # lint + build before push
 ```
+
+**Git workflow:** Do not commit directly to `main`. Branch from `main` (`feature/…` or `fix/…`), open a PR, merge when CI and preview pass. See [`docs/WORKFLOW.md`](docs/WORKFLOW.md).
 
 Deploys: merge PRs to `main` (Vercel + GitHub). See `docs/DEPLOYMENT.md` and `docs/RELEASE.md`. Site version footer uses `lib/build-info.ts`.
 

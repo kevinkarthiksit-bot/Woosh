@@ -28,7 +28,7 @@ pnpm start
 
 ### Deploy
 
-Merges to `main` deploy to Vercel via GitHub integration. See `docs/DEPLOYMENT.md` and `docs/RELEASE.md`.
+All changes merge to `main` via pull request. Vercel deploys **Preview** for PRs and **Production** on merge. See [`docs/WORKFLOW.md`](docs/WORKFLOW.md), [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md), and [`docs/RELEASE.md`](docs/RELEASE.md).
 
 ## Project Structure
 
@@ -57,6 +57,7 @@ This is a **frontend-only v1**. Authentication, booking, payments, and backend A
 | `docs/DECISIONS.md` | Key project decisions |
 | `docs/API_ASSUMPTIONS.md` | Future backend API plans |
 | `docs/TODO.md` | Task list and blockers |
+| `docs/WORKFLOW.md` | Branch model, PR loop, preview vs production |
 | `docs/DEPLOYMENT.md` | Vercel + GitHub deploys, env vars, rollback |
 | `docs/RELEASE.md` | Semver, changelog, git tags |
 | `CHANGELOG.md` | Release history |

@@ -81,3 +81,10 @@ Interactive drag slider replaces static side-by-side panels in See the Differenc
 - **Semver** in `package.json`; release notes in `CHANGELOG.md`; git tags `vX.Y.Z` per `docs/RELEASE.md`.
 - **Build label** in footer (`lib/build-info.ts`) and meta tags `site-version` / `build-ref` for support.
 - **`NEXT_PUBLIC_SITE_LIVE`**: `false` until public launch (preview banner, `noindex`); set `true` on Vercel Production when going live.
+
+## Development pipeline (Jun 2026)
+
+- **Trunk-based workflow:** short-lived `feature/*` and `fix/*` branches off `main`; merge via PR only.
+- **No `develop` branch** — keeps the pipeline simple for a marketing site with a small team.
+- **Preview:** Vercel deploy per PR; client review at `preview.getwoosh.com`.
+- **Production:** merge to `main` auto-deploys. Documented in `docs/WORKFLOW.md`.
