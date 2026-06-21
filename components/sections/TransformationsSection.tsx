@@ -3,10 +3,12 @@
 import { Carousel } from "@/components/ui/Carousel";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { resolveMediaUrl } from "@/lib/api/media";
+import { usePublicMedia } from "@/hooks/usePublicMedia";
 import { transformationVideos } from "@/lib/services";
 import { Play } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 function TransformationCard({
   title,
@@ -47,6 +49,21 @@ function TransformationCard({
 }
 
 export function TransformationsSection() {
+  const { media } = usePublicMedia();
+
+  const items = useMemo(() => {
+    const apiItems = media?.transformations;
+    if (apiItems?.length) {
+      return apiItems.map((item, index) => ({
+        id: item._id ?? String(index),
+        title: item.title ?? item.label ?? "Woosh transformation",
+        video: resolveMediaUrl(item.video ?? item.url, transformationVideos[0]?.video ?? ""),
+        poster: resolveMediaUrl(item.image, transformationVideos[0]?.poster ?? ""),
+      }));
+    }
+    return transformationVideos;
+  }, [media]);
+
   return (
     <section id="transformations" className="section-padding bg-background-muted">
       <Container>
@@ -64,7 +81,7 @@ export function TransformationsSection() {
 
         <Container className="px-0 sm:px-6 lg:px-8">
           <Carousel slideClassName="basis-full sm:basis-1/2 lg:basis-1/3 px-3">
-            {transformationVideos.map((item) => (
+            {items.map((item) => (
               <TransformationCard
                 key={item.id}
                 title={item.title}

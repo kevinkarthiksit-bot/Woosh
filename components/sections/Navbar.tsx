@@ -1,18 +1,20 @@
 "use client";
 
-import { Button } from "@/components/ui/Button";
+import { useAuth } from "@/components/providers/AuthProvider";
 import { useAuthModal } from "@/components/providers/AuthModalProvider";
+import { Button } from "@/components/ui/Button";
 import { useSectionNav } from "@/hooks/useSectionNav";
 import { navLinks } from "@/lib/brand";
 import { isSiteLive } from "@/lib/build-info";
 import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
+import { LogOut, Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export function Navbar() {
   const { openAuthModal } = useAuthModal();
+  const { user, isAuthenticated, logout } = useAuth();
   const { goToSection, isHome } = useSectionNav();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -28,6 +30,8 @@ export function Navbar() {
     setMobileOpen(false);
     goToSection(href);
   };
+
+  const displayName = user?.name || (user?.phone ? `+91 ${user.phone}` : "Account");
 
   return (
     <header
@@ -68,7 +72,7 @@ export function Navbar() {
           </span>
           <div className="hidden sm:block xl:hidden">
             <p className="text-sm font-bold uppercase tracking-[0.18em] text-foreground">Woosh</p>
-            <p className="text-xs text-cyan">Doorstep Vehicle Care</p>
+            <p className="text-caption font-medium text-cyan">Doorstep Vehicle Care</p>
           </div>
         </Link>
 
@@ -86,12 +90,34 @@ export function Navbar() {
               {link.label}
             </Link>
           ))}
+          {isAuthenticated ? (
+            <Link href="/orders" className="focus-ring text-sm font-medium text-foreground/75 hover:text-cyan">
+              My orders
+            </Link>
+          ) : null}
         </nav>
 
-        <div className="flex items-center gap-3">
-          <Button onClick={openAuthModal} className="hidden sm:inline-flex">
-            Login / Sign Up
-          </Button>
+        <div className="flex items-center gap-2 sm:gap-3">
+          {isAuthenticated ? (
+            <>
+              <span className="hidden max-w-[140px] truncate text-sm font-medium text-foreground/80 sm:inline">
+                {displayName}
+              </span>
+              <button
+                type="button"
+                onClick={logout}
+                className="focus-ring hidden min-h-[44px] items-center gap-1.5 rounded-full border border-black/10 px-3 text-sm text-muted hover:text-foreground sm:inline-flex"
+                aria-label="Log out"
+              >
+                <LogOut className="h-4 w-4" />
+                Log out
+              </button>
+            </>
+          ) : (
+            <Button onClick={() => openAuthModal()} className="hidden sm:inline-flex">
+              Sign in / Sign up
+            </Button>
+          )}
           <button
             type="button"
             className="focus-ring flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-black/10 p-2 text-foreground xl:hidden"
@@ -120,9 +146,31 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <Button onClick={openAuthModal} className="mt-2 w-full sm:hidden">
-              Login / Sign Up
-            </Button>
+            {isAuthenticated ? (
+              <>
+                <Link
+                  href="/orders"
+                  onClick={() => setMobileOpen(false)}
+                  className="focus-ring min-h-[44px] rounded-xl px-3 py-3 text-sm font-medium text-foreground/80 hover:bg-black/5 hover:text-cyan"
+                >
+                  My orders
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => {
+                    logout();
+                    setMobileOpen(false);
+                  }}
+                  className="focus-ring min-h-[44px] rounded-xl px-3 py-3 text-left text-sm font-medium text-muted hover:bg-black/5"
+                >
+                  Log out
+                </button>
+              </>
+            ) : (
+              <Button onClick={() => openAuthModal()} className="mt-2 w-full sm:hidden">
+                Sign in / Sign up
+              </Button>
+            )}
           </nav>
         </div>
       ) : null}

@@ -1,11 +1,12 @@
 "use client";
 
 import { AuthModal } from "@/components/ui/AuthModal";
-import { createContext, ReactNode, useContext, useMemo, useState } from "react";
+import { createContext, ReactNode, useCallback, useContext, useMemo, useState } from "react";
 
 interface AuthModalContextValue {
   isOpen: boolean;
-  openAuthModal: () => void;
+  redirectAfterLogin: string | null;
+  openAuthModal: (redirectAfter?: string) => void;
   closeAuthModal: () => void;
 }
 
@@ -13,14 +14,26 @@ const AuthModalContext = createContext<AuthModalContextValue | undefined>(undefi
 
 export function AuthModalProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [redirectAfterLogin, setRedirectAfterLogin] = useState<string | null>(null);
+
+  const openAuthModal = useCallback((redirectAfter?: string) => {
+    setRedirectAfterLogin(redirectAfter ?? null);
+    setIsOpen(true);
+  }, []);
+
+  const closeAuthModal = useCallback(() => {
+    setIsOpen(false);
+    setRedirectAfterLogin(null);
+  }, []);
 
   const value = useMemo(
     () => ({
       isOpen,
-      openAuthModal: () => setIsOpen(true),
-      closeAuthModal: () => setIsOpen(false),
+      redirectAfterLogin,
+      openAuthModal,
+      closeAuthModal,
     }),
-    [isOpen],
+    [isOpen, redirectAfterLogin, openAuthModal, closeAuthModal],
   );
 
   return (

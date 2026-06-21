@@ -32,7 +32,6 @@ export function WhyWooshSection() {
         <SectionHeading
           eyebrow="Why Choose Woosh"
           title="Built for premium doorstep vehicle care"
-          highlight="premium"
           subtitle="Every detail is designed to deliver trust, convenience, and a consistently exceptional experience."
         />
 
@@ -46,15 +45,7 @@ export function WhyWooshSection() {
                 className="object-cover object-[50%_42%]"
                 sizes="(max-width: 1024px) 100vw, 480px"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1d1d1f]/80 via-[#1d1d1f]/20 to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6">
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan">
-                  Trained Professionals
-                </p>
-                <p className="mt-2 text-xl font-bold text-white sm:text-2xl">
-                  Premium care. Powerful clean.
-                </p>
-              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1d1d1f]/50 via-transparent to-transparent" />
             </div>
           </div>
 
@@ -76,8 +67,8 @@ export function WhyWooshSection() {
                   >
                     <Icon className="h-5 w-5" aria-hidden="true" />
                   </div>
-                  <h3 className="mb-2 text-base font-semibold text-foreground">{item.title}</h3>
-                  <p className="text-sm leading-relaxed text-muted">{item.description}</p>
+                  <h3 className="mb-2 text-h3 text-foreground">{item.title}</h3>
+                  <p className="text-body leading-relaxed text-muted">{item.description}</p>
                 </div>
               );
             })}

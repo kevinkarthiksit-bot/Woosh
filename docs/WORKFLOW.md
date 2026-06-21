@@ -25,7 +25,7 @@ git checkout -b feature/short-description
 
 pnpm dev          # http://localhost:3000
 # … make changes …
-pnpm verify       # lint + build before push
+pnpm verify       # lint + unit tests + build before push
 
 git add -A
 git commit -m "feat: describe change"
@@ -33,7 +33,7 @@ git push -u origin feature/short-description
 ```
 
 1. Open a **Pull Request** to `main` on GitHub.
-2. Wait for **GitHub CI** (`lint-and-build`) and **Vercel Preview** (bot comment with URL).
+2. Wait for **GitHub CI** (`unit`, `build`; optional `integration` / `e2e` when secrets are set) and **Vercel Preview** (bot comment with URL).
 3. Share the preview URL for review (see environments below).
 4. **Merge** when approved → production redeploys automatically.
 5. **Delete** the feature branch on GitHub after merge.
@@ -66,7 +66,7 @@ When adding or updating assets:
 GitHub → **Woosh** → **Settings** → **Branches** → **Add branch protection rule** for `main`:
 
 - [ ] Require a pull request before merging
-- [ ] Require status checks to pass: **`lint-and-build`**
+- [ ] Require status checks to pass: **`unit`**, **`build`**
 - [ ] (Optional) Do not allow bypassing the above settings
 
 Direct pushes to `main` should be avoided even before protection is enabled.
@@ -101,6 +101,7 @@ Set Production to `true` only at public launch. Details: [`docs/DEPLOYMENT.md`](
 
 ## Related docs
 
+- [`docs/TESTING.md`](TESTING.md) — unit, integration, and E2E test suites
 - [`docs/DEPLOYMENT.md`](DEPLOYMENT.md) — domains, rollback, emergency CLI deploy
 - [`docs/RELEASE.md`](RELEASE.md) — semver, changelog, git tags
 - [`.github/pull_request_template.md`](../.github/pull_request_template.md) — PR checklist

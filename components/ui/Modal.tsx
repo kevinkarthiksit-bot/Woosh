@@ -1,8 +1,8 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { X } from "lucide-react";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
+import { X } from "lucide-react";
 import { ReactNode, useEffect, useId, useRef } from "react";
 
 interface ModalProps {
@@ -12,24 +12,24 @@ interface ModalProps {
   children: ReactNode;
 }
 
+const FOCUSABLE =
+  'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
 export function Modal({ open, onClose, title, children }: ModalProps) {
   const titleId = useId();
   const dialogRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
+  const onCloseRef = useRef(onClose);
+
+  onCloseRef.current = onClose;
 
   useFocusTrap(dialogRef, open);
 
   useEffect(() => {
     if (!open) return;
 
-    previousFocusRef.current = document.activeElement as HTMLElement;
-    const focusable = dialogRef.current?.querySelector<HTMLElement>(
-      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
-    );
-    focusable?.focus();
-
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onClose();
+      if (event.key === "Escape") onCloseRef.current();
     };
 
     document.body.style.overflow = "hidden";
@@ -40,7 +40,17 @@ export function Modal({ open, onClose, title, children }: ModalProps) {
       window.removeEventListener("keydown", handleKeyDown);
       previousFocusRef.current?.focus();
     };
-  }, [open, onClose]);
+  }, [open]);
+
+  useEffect(() => {
+    if (!open || !dialogRef.current) return;
+
+    previousFocusRef.current = document.activeElement as HTMLElement;
+    const root = dialogRef.current;
+    const preferred = root.querySelector<HTMLElement>("input:not([disabled])");
+    const fallback = root.querySelector<HTMLElement>(FOCUSABLE);
+    (preferred ?? fallback)?.focus();
+  }, [open]);
 
   if (!open) return null;
 

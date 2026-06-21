@@ -35,7 +35,7 @@ export function Footer() {
               <p className="text-sm text-cyan">{brand.tagline}</p>
             </div>
           </div>
-          <p className="max-w-sm text-sm leading-relaxed text-muted">
+          <p className="max-w-sm text-body leading-relaxed text-foreground/75">
             {brand.motto} Premium doorstep vehicle care for cars, bikes, autos, and more.
           </p>
           <AppDownloadButtons size="sm" />
@@ -48,17 +48,17 @@ export function Footer() {
           <div className="flex flex-col gap-3">
             <button
               type="button"
-              onClick={() => goToSection("#contact")}
-              className="focus-ring w-fit text-sm text-muted transition hover:text-cyan"
-            >
-              Contact Us
-            </button>
-            <button
-              type="button"
               onClick={() => goToSection("#blogs")}
               className="focus-ring w-fit text-sm text-muted transition hover:text-cyan"
             >
               Blogs
+            </button>
+            <button
+              type="button"
+              onClick={() => goToSection("#contact")}
+              className="focus-ring w-fit text-sm text-muted transition hover:text-cyan"
+            >
+              Contact Us
             </button>
           </div>
         </div>

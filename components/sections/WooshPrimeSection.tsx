@@ -41,7 +41,7 @@ export function WooshPrimeSection() {
               ))}
             </ul>
             <Button
-              onClick={openAuthModal}
+              onClick={() => openAuthModal()}
               className="bg-gradient-to-r from-gold to-yellow-300 text-foreground hover:scale-[1.02]"
             >
               Book Prime Experience

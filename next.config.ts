@@ -17,6 +17,9 @@ const nextConfig: NextConfig = {
     NEXT_PUBLIC_SITE_VERSION: pkg.version,
     NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA:
       process.env.VERCEL_GIT_COMMIT_SHA ?? "",
+    NEXT_PUBLIC_API_BASE_URL:
+      process.env.NEXT_PUBLIC_API_BASE_URL ??
+      "https://car-wash-vbry.onrender.com/api",
   },
 };
 

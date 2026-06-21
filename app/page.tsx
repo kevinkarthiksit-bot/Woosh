@@ -22,8 +22,8 @@ export default function HomePage() {
       <TestimonialsSection />
       <DifferenceSection />
       <TransformationsSection />
-      <ContactSection />
       <BlogsSection />
+      <ContactSection />
     </>
   );
 }

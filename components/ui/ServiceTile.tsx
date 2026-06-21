@@ -8,23 +8,21 @@ import Link from "next/link";
 interface ServiceTileProps {
   service: Service;
   className?: string;
-  stagger?: boolean;
 }
 
-export function ServiceTile({ service, className, stagger = false }: ServiceTileProps) {
+export function ServiceTile({ service, className }: ServiceTileProps) {
   const objectPosition = service.imageObjectPosition ?? "50% 50%";
 
   return (
     <Link
       href={`/services/${service.slug}`}
       className={cn(
-        "group relative block overflow-hidden rounded-3xl shadow-card transition-all duration-500 hover:shadow-accent hover:-translate-y-1",
+        "group relative block overflow-hidden rounded-3xl shadow-card transition-all duration-500 hover:-translate-y-1 hover:shadow-accent",
         service.goldAccent && "ring-1 ring-gold/40 hover:ring-gold/70",
-        stagger && "lg:translate-y-4",
         className,
       )}
     >
-      <div className="relative aspect-[4/5] min-h-[260px] sm:min-h-[300px] lg:min-h-[340px]">
+      <div className="relative aspect-[4/5] min-h-[260px] sm:min-h-[300px] lg:min-h-[320px]">
         <Image
           src={service.image}
           alt={service.title}
@@ -52,17 +50,17 @@ export function ServiceTile({ service, className, stagger = false }: ServiceTile
         </div>
 
         {service.tilePricing ? (
-          <span className="absolute right-4 top-4 rounded-full bg-[#1d1d1f]/75 px-3 py-1 text-xs font-semibold text-cyan backdrop-blur-sm">
+          <span className="absolute right-4 top-4 max-w-[calc(100%-5rem)] whitespace-nowrap rounded-full bg-[#1d1d1f]/75 px-3 py-1.5 text-xs font-semibold text-cyan backdrop-blur-sm sm:text-sm">
             {service.tilePricing}
           </span>
         ) : null}
 
         <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
-          <p className="mb-1 text-xs font-semibold uppercase tracking-[0.18em] text-cyan">
+          <p className="mb-1 text-sm font-semibold uppercase tracking-wide text-cyan">
             {service.shortTitle}
           </p>
           <h3 className="text-xl font-bold text-white sm:text-2xl">{service.title}</h3>
-          <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-white/75">
+          <p className="mt-2 line-clamp-2 text-base leading-relaxed text-white/85">
             {service.cardDescription}
           </p>
           <span className="mt-4 inline-flex items-center text-sm font-semibold text-white transition group-hover:text-cyan">

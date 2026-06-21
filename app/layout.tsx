@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans, Outfit } from "next/font/google";
+import { DM_Sans, Plus_Jakarta_Sans } from "next/font/google";
 import { HashScrollHandler } from "@/components/HashScrollHandler";
 import { AuthModalProvider } from "@/components/providers/AuthModalProvider";
+import { AuthProvider } from "@/components/providers/AuthProvider";
 import { MobileBookBar } from "@/components/layout/MobileBookBar";
 import { PreviewBanner } from "@/components/layout/PreviewBanner";
 import { Footer } from "@/components/sections/Footer";
@@ -14,9 +15,10 @@ const dmSans = DM_Sans({
   variable: "--font-body",
 });
 
-const outfit = Outfit({
+const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-display-fam",
+  weight: ["600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -44,20 +46,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${dmSans.variable} ${outfit.variable} antialiased`}>
+      <body className={`${dmSans.variable} ${plusJakarta.variable} antialiased`}>
         <a href="#main" className="skip-link focus-ring">
           Skip to main content
         </a>
-        <AuthModalProvider>
-          <HashScrollHandler />
-          <PreviewBanner />
-          <Navbar />
-          <main id="main" className="pb-24 lg:pb-0">
-            {children}
-          </main>
-          <Footer />
-          <MobileBookBar />
-        </AuthModalProvider>
+        <AuthProvider>
+          <AuthModalProvider>
+            <HashScrollHandler />
+            <PreviewBanner />
+            <Navbar />
+            <main id="main" className="pb-24 lg:pb-0">
+              {children}
+            </main>
+            <Footer />
+            <MobileBookBar />
+          </AuthModalProvider>
+        </AuthProvider>
       </body>
     </html>
   );

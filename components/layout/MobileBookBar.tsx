@@ -1,11 +1,15 @@
 "use client";
 
+import { useAuth } from "@/components/providers/AuthProvider";
 import { useAuthModal } from "@/components/providers/AuthModalProvider";
 import { Button } from "@/components/ui/Button";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export function MobileBookBar() {
+  const router = useRouter();
   const { openAuthModal } = useAuthModal();
+  const { isAuthenticated, isLoading: authLoading } = useAuth();
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
@@ -20,6 +24,16 @@ export function MobileBookBar() {
     return () => observer.disconnect();
   }, []);
 
+  const handleBook = () => {
+    if (authLoading) return;
+    const bookPath = "/services/car-wash-and-care/book";
+    if (!isAuthenticated) {
+      openAuthModal(bookPath);
+      return;
+    }
+    router.push(bookPath);
+  };
+
   if (!visible) return null;
 
   return (
@@ -28,8 +42,12 @@ export function MobileBookBar() {
       role="region"
       aria-label="Quick booking"
     >
-      <Button onClick={openAuthModal} className="w-full min-h-[48px] text-base">
-        Book a Wash
+      <Button
+        onClick={handleBook}
+        disabled={authLoading}
+        className="w-full min-h-[48px] text-base"
+      >
+        {authLoading ? "Loading…" : "Book a Wash"}
       </Button>
     </div>
   );
