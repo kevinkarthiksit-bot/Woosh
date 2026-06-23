@@ -28,6 +28,23 @@ export async function getOrder(id: string, token: string): Promise<ApiOrder | nu
   return response.data ?? null;
 }
 
+export interface RateOrderInput {
+  rating: number;
+  review?: string;
+}
+
+export async function rateOrder(
+  id: string,
+  body: RateOrderInput,
+  token: string,
+): Promise<void> {
+  await apiFetch(`/orders/${id}/rate`, {
+    method: "POST",
+    token,
+    body: JSON.stringify(body),
+  });
+}
+
 export async function validateCoupon(
   code: string,
   orderAmount: number,

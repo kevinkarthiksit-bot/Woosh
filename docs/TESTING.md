@@ -25,7 +25,8 @@ pnpm verify            # lint + unit + build (fast PR gate)
 
 Fast, no network. Covers:
 
-- `lib/api/*` — client, auth, mappers, slots, orders, services, media
+- `lib/api/*` — client, auth, mappers, slots, orders, services, media, users, memberships
+- `lib/account/*` — order filters, tab parsing
 - `lib/utils`, `lib/build-info`
 - `hooks/useSectionNav`
 - Components: AuthModal, BookingWizard, Carousel, Navbar, HashScrollHandler
@@ -57,6 +58,8 @@ Config: [`vitest.integration.config.ts`](../vitest.integration.config.ts) — 12
 Auth-dependent flows use `tests/e2e/fixtures/auth.setup.ts` to log in once and persist session storage. Same secrets as integration tests.
 
 Projects run at **390px** (Pixel 5), **768px** (iPad Mini), and **1280px** (desktop).
+
+**Account routes:** `/account` is the signed-in hub (overview, orders, Woosh Coins, referral). `/orders` redirects to `/account?tab=orders`. E2E specs: `tests/e2e/specs/account.spec.ts`, `orders.spec.ts`.
 
 ## CI jobs
 

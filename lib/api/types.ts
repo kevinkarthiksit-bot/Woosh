@@ -51,9 +51,37 @@ export interface ApiVehicle {
   isSelected?: boolean;
 }
 
+export interface ApiWalletTransaction {
+  amount?: number;
+  type?: string;
+  note?: string;
+  description?: string;
+  createdAt?: string;
+  date?: string;
+}
+
 export interface ApiWallet {
   walletBalance: number;
-  transactions?: unknown[];
+  transactions?: ApiWalletTransaction[];
+}
+
+export interface ApiReferralInfo {
+  referralCode?: string;
+  totalReferrals?: number;
+  coinsEarned?: number;
+  referralCount?: number;
+  rewardsEarned?: number;
+}
+
+export interface ApiMembership {
+  _id?: string;
+  status?: string;
+  planName?: string;
+  name?: string;
+  serviceName?: string;
+  expiresAt?: string;
+  endDate?: string;
+  startDate?: string;
 }
 
 export interface ApiOrderItem {

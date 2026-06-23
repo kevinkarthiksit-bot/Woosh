@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { addUserVehicle, getUserVehicles, getUserWallet } from "@/lib/api/users";
+import { addUserVehicle, getUserReferralInfo, getUserVehicles, getUserWallet } from "@/lib/api/users";
 import { loginTestUser } from "../helpers/auth";
 import { hasIntegrationSecrets } from "../helpers/env";
 import { retryOnColdStart } from "../helpers/retry";
@@ -13,6 +13,15 @@ describe.runIf(hasIntegrationSecrets())("users integration", () => {
 
     const wallet = await retryOnColdStart(() => getUserWallet(user.phone, token));
     expect(typeof wallet.walletBalance).toBe("number");
+  });
+
+  it("returns referral info for test user", async () => {
+    const { token, user } = await loginTestUser();
+    const referral = await retryOnColdStart(() => getUserReferralInfo(user.phone, token));
+    expect(referral).toBeDefined();
+    if (referral) {
+      expect(referral).toEqual(expect.objectContaining({}));
+    }
   });
 
   it("adds a vehicle for test user", async () => {

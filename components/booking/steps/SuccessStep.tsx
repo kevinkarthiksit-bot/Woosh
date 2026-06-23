@@ -24,7 +24,7 @@ export function SuccessStep({
         <span className="font-semibold text-foreground">{orderNumber}</span>
       </p>
       <div className="flex flex-wrap gap-3">
-        <Button onClick={onViewOrders}>View my orders</Button>
+        <Button onClick={onViewOrders}>Go to my account</Button>
         <Button variant="secondary" onClick={onGoHome}>
           Back home
         </Button>

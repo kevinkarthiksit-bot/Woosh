@@ -433,7 +433,7 @@ export function BookingWizard({ slug }: BookingWizardProps) {
       <SuccessStep
         serviceTitle={staticService.title}
         orderNumber={orderNumber}
-        onViewOrders={() => router.push("/orders")}
+        onViewOrders={() => router.push("/account?tab=orders")}
         onGoHome={() => router.push("/")}
       />
     );

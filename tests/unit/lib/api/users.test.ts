@@ -1,5 +1,5 @@
 import { describe, expect, it, vi, beforeEach } from "vitest";
-import { addUserVehicle, getUserVehicles, getUserWallet } from "@/lib/api/users";
+import { addUserVehicle, getUserReferralInfo, getUserVehicles, getUserWallet } from "@/lib/api/users";
 import { apiFetch } from "@/lib/api/client";
 
 vi.mock("@/lib/api/client", () => ({
@@ -45,5 +45,15 @@ describe("users API", () => {
     });
     const wallet = await getUserWallet("9876543210", "token");
     expect(wallet.walletBalance).toBe(150);
+  });
+
+  it("getUserReferralInfo fetches referral code", async () => {
+    vi.mocked(apiFetch).mockResolvedValue({
+      success: true,
+      data: { referralCode: "WOOSH123", totalReferrals: 2 },
+    });
+    const referral = await getUserReferralInfo("9876543210", "token");
+    expect(referral?.referralCode).toBe("WOOSH123");
+    expect(apiFetch).toHaveBeenCalledWith("/users/9876543210/referral-info", { token: "token" });
   });
 });

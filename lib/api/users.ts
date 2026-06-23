@@ -1,5 +1,5 @@
 import { apiFetch } from "@/lib/api/client";
-import type { ApiResponse, ApiVehicle, ApiWallet } from "@/lib/api/types";
+import type { ApiReferralInfo, ApiResponse, ApiVehicle, ApiWallet } from "@/lib/api/types";
 
 export async function getUserVehicles(phone: string, token: string): Promise<ApiVehicle[]> {
   const response = await apiFetch<ApiResponse<ApiVehicle[]>>(`/users/${phone}/vehicles`, { token });
@@ -30,4 +30,14 @@ export async function addUserVehicle(
 export async function getUserWallet(phone: string, token: string): Promise<ApiWallet> {
   const response = await apiFetch<ApiResponse<ApiWallet>>(`/users/${phone}/wallet`, { token });
   return response.data ?? { walletBalance: 0, transactions: [] };
+}
+
+export async function getUserReferralInfo(
+  phone: string,
+  token: string,
+): Promise<ApiReferralInfo | null> {
+  const response = await apiFetch<ApiResponse<ApiReferralInfo>>(`/users/${phone}/referral-info`, {
+    token,
+  });
+  return response.data ?? null;
 }

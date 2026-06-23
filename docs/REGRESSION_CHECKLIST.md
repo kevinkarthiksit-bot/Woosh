@@ -22,6 +22,15 @@ Run at **390px**, **768px**, and **1280px** before merging to `main`.
 - [ ] My orders page lists placed test orders with status badge and schedule
 - [ ] Unauthenticated book CTA opens OTP modal, then continues to wizard
 
+## Account dashboard
+
+- [ ] `/account` overview shows order count, Woosh Coins balance, referral teaser
+- [ ] Orders tab filters (All / Active / Completed) and order detail drawer
+- [ ] Woosh Coins tab shows balance and transaction list
+- [ ] Referral tab shows code with copy button
+- [ ] `/orders` redirects to `/account?tab=orders`
+- [ ] Navbar **My account** link works when logged in
+
 ## Mobile app video parity (car wash)
 
 Side-by-side with `Booking flow.mp4` on your machine while running `pnpm dev:clean`:
@@ -48,7 +57,9 @@ pnpm test:integration # live API (needs WOOSH_TEST_* secrets)
 pnpm test:e2e         # Playwright (build + serve out/)
 ```
 
-Playwright E2E specs mirror this checklist: landing, navigation, auth, five booking flows, orders.
+Playwright E2E specs mirror this checklist: landing, navigation, auth, five booking flows, account dashboard, orders redirect.
+
+**Account routes:** `/account` is the primary hub; `/orders` redirects to `/account?tab=orders`.
 
 ## Deploy smoke
 

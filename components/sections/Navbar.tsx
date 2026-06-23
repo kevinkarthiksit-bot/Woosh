@@ -91,8 +91,8 @@ export function Navbar() {
             </Link>
           ))}
           {isAuthenticated ? (
-            <Link href="/orders" className="focus-ring text-sm font-medium text-foreground/75 hover:text-cyan">
-              My orders
+            <Link href="/account" className="focus-ring text-sm font-medium text-foreground/75 hover:text-cyan">
+              My account
             </Link>
           ) : null}
         </nav>
@@ -149,11 +149,11 @@ export function Navbar() {
             {isAuthenticated ? (
               <>
                 <Link
-                  href="/orders"
+                  href="/account"
                   onClick={() => setMobileOpen(false)}
                   className="focus-ring min-h-[44px] rounded-xl px-3 py-3 text-sm font-medium text-foreground/80 hover:bg-black/5 hover:text-cyan"
                 >
-                  My orders
+                  My account
                 </Link>
                 <button
                   type="button"
