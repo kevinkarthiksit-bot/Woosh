@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Woosh Concierge chat widget (`components/assistant/`) with assistant API client
+- How Woosh Works section, trust strip, and premium homepage polish
+- Updated service card and poster images for all five services
+- `scripts/process-cards.mjs` for 4:5 service card crops
+- Assistant unit and E2E tests (`assistant.spec.ts`)
 - Development pipeline docs (`docs/WORKFLOW.md`) and `pnpm verify` script
 - Git-connected Vercel deploy workflow and `out` static export configuration
 - GitHub Actions CI (lint + build)

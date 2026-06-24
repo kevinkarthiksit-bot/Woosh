@@ -36,7 +36,13 @@ import { useEffect, useRef, useState } from "react";
 
 
 
-const HERO_HEIGHT = "min(78vh, 720px)";
+const HERO_NAV_OFFSET = "6rem";
+
+const HERO_STAGE_HEIGHT = "clamp(600px, calc(100svh - 6rem), 760px)";
+
+const HERO_SECTION_HEIGHT = `calc(${HERO_NAV_OFFSET} + ${HERO_STAGE_HEIGHT})`;
+
+const heroProofPoints = ["Upfront pricing", "Live slots", "Account tracking"];
 
 
 
@@ -208,7 +214,7 @@ export function HeroSection() {
 
       className="relative overflow-hidden bg-charcoal pt-24"
 
-      style={{ minHeight: HERO_HEIGHT }}
+      style={{ minHeight: HERO_SECTION_HEIGHT }}
 
       aria-roledescription="carousel"
 
@@ -232,7 +238,7 @@ export function HeroSection() {
 
         onEmblaApi={setEmblaApi}
 
-        className="absolute inset-x-0 top-24 bottom-0"
+        className="absolute inset-x-0 bottom-0 top-24"
 
       >
 
@@ -242,9 +248,9 @@ export function HeroSection() {
 
             key={slide.id}
 
-            className="relative h-full min-h-[inherit]"
+            className="relative h-full"
 
-            style={{ minHeight: HERO_HEIGHT }}
+            style={{ minHeight: HERO_STAGE_HEIGHT }}
 
             aria-hidden={index !== activeIndex}
 
@@ -276,9 +282,9 @@ export function HeroSection() {
 
       <Container
 
-        className="pointer-events-none absolute inset-x-0 top-24 z-10 flex items-end pb-20 pt-6 md:items-center md:pb-24 md:pt-4"
+        className="pointer-events-none absolute inset-x-0 bottom-0 top-24 z-10 flex items-end pb-28 pt-6 md:items-center md:pb-24 md:pt-4"
 
-        style={{ minHeight: HERO_HEIGHT }}
+        style={{ minHeight: HERO_STAGE_HEIGHT }}
 
       >
 
@@ -296,7 +302,7 @@ export function HeroSection() {
 
             exit="exit"
 
-            className="pointer-events-auto max-w-xl space-y-5"
+            className="pointer-events-auto max-w-xl space-y-4 sm:space-y-5"
 
           >
 
@@ -338,6 +344,14 @@ export function HeroSection() {
 
             </div>
 
+            <ul className="flex flex-wrap gap-2 text-caption text-white/80" aria-label="Booking assurances">
+              {heroProofPoints.map((point) => (
+                <li key={point} className="rounded-full border border-white/20 bg-white/10 px-3 py-1 backdrop-blur">
+                  {point}
+                </li>
+              ))}
+            </ul>
+
           </motion.div>
 
         </AnimatePresence>
@@ -348,7 +362,7 @@ export function HeroSection() {
 
       <div
 
-        className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 items-center justify-center gap-2 px-4"
+        className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 items-center justify-center gap-2 px-4 md:bottom-8"
 
         role="tablist"
 

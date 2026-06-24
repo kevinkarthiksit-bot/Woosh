@@ -15,15 +15,14 @@ export function ContactSection() {
         <SectionHeading
           eyebrow="Contact Us"
           title="We would love to hear from you"
-          subtitle="Reach out for bookings, partnerships, or support. This form is frontend-only for now."
+          subtitle="Reach out for bookings, partnerships, or support. Share your details and the Woosh team will follow up."
         />
 
         <div className="mx-auto max-w-2xl">
           <Card>
             {submitted ? (
               <p className="text-center text-muted">
-                Thank you for your message. Our team will get back to you once contact workflows are
-                connected.
+                Thank you for your message. Our team will get back to you shortly.
               </p>
             ) : (
               <form
@@ -39,6 +38,8 @@ export function ContactSection() {
                   </label>
                   <input
                     id="contact-name"
+                    type="text"
+                    autoComplete="name"
                     required
                     className="focus-ring w-full rounded-2xl border border-black/12 bg-white px-4 py-3 text-foreground"
                   />
@@ -49,6 +50,8 @@ export function ContactSection() {
                   </label>
                   <input
                     id="contact-email"
+                    type="text"
+                    autoComplete="email"
                     required
                     className="focus-ring w-full rounded-2xl border border-black/12 bg-white px-4 py-3 text-foreground"
                   />
@@ -59,6 +62,7 @@ export function ContactSection() {
                   </label>
                   <textarea
                     id="contact-message"
+                    autoComplete="off"
                     required
                     rows={5}
                     className="focus-ring w-full rounded-2xl border border-black/12 bg-white px-4 py-3 text-foreground"

@@ -36,9 +36,24 @@ export function AccountShell({ children }: AccountShellProps) {
         {isLoading ? (
           <p className="mt-8 text-muted">Loading your account…</p>
         ) : !isAuthenticated ? (
-          <div className="mt-8 space-y-4 rounded-2xl border border-black/8 bg-white p-6 shadow-card">
-            <p className="text-muted">Sign in to view your account.</p>
-            <Button onClick={() => openAuthModal("/account")}>Sign in / Sign up</Button>
+          <div className="mt-8 overflow-hidden rounded-3xl border border-black/8 bg-white shadow-card">
+            <div className="bg-gradient-to-r from-charcoal to-blue p-6 text-white">
+              <p className="text-eyebrow text-cyan">Private Woosh dashboard</p>
+              <h2 className="mt-2 font-display text-2xl font-bold">Sign in to manage every wash</h2>
+              <p className="mt-2 text-sm leading-relaxed text-white/80">
+                Track bookings, save vehicles and addresses, use Woosh Coins, and access referral rewards from one place.
+              </p>
+            </div>
+            <div className="grid gap-3 p-6 sm:grid-cols-3">
+              {["Live order status", "Saved vehicles", "Coins & referrals"].map((item) => (
+                <div key={item} className="rounded-2xl bg-background-muted px-4 py-3 text-sm font-semibold text-foreground">
+                  {item}
+                </div>
+              ))}
+            </div>
+            <div className="border-t border-black/8 p-6 pt-0">
+              <Button onClick={() => openAuthModal("/account")}>Sign in / Sign up</Button>
+            </div>
           </div>
         ) : (
           <div className="mt-8 space-y-6">{children}</div>

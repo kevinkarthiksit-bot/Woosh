@@ -6,6 +6,7 @@ export function PreviewBanner() {
   return (
     <div
       role="status"
+      aria-label="Preview"
       className="sticky top-0 z-[60] border-b border-amber-300/50 bg-amber-50 px-4 py-2 text-center text-sm font-medium text-amber-900"
     >
       Preview — not the live public site

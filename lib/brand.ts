@@ -31,11 +31,8 @@ export const brand = {
 
 export const navLinks = [
   { label: "Home", href: "#home" },
+  { label: "How it works", href: "#how-it-works" },
   { label: "Services", href: "#services" },
   { label: "Why Woosh", href: "#why-woosh" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "Difference", href: "#difference" },
-  { label: "Transformations", href: "#transformations" },
-  { label: "Blogs", href: "#blogs" },
   { label: "Contact", href: "#contact" },
 ] as const;

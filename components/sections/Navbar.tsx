@@ -10,11 +10,13 @@ import { cn } from "@/lib/utils";
 import { LogOut, Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export function Navbar() {
+  const router = useRouter();
   const { openAuthModal } = useAuthModal();
-  const { user, isAuthenticated, logout } = useAuth();
+  const { user, isAuthenticated, isLoading: authLoading, logout } = useAuth();
   const { goToSection, isHome } = useSectionNav();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -29,6 +31,17 @@ export function Navbar() {
   const handleNavClick = (href: string) => {
     setMobileOpen(false);
     goToSection(href);
+  };
+
+  const handleBook = () => {
+    if (authLoading) return;
+    setMobileOpen(false);
+    const bookPath = "/services/car-wash-and-care/book";
+    if (!isAuthenticated) {
+      openAuthModal(bookPath);
+      return;
+    }
+    router.push(bookPath);
   };
 
   const displayName = user?.name || (user?.phone ? `+91 ${user.phone}` : "Account");
@@ -95,6 +108,9 @@ export function Navbar() {
               My account
             </Link>
           ) : null}
+          <Button onClick={handleBook} className="min-h-[40px] px-5 py-2">
+            Book a wash
+          </Button>
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-3">
@@ -171,6 +187,9 @@ export function Navbar() {
                 Sign in / Sign up
               </Button>
             )}
+            <Button onClick={handleBook} className="mt-2 w-full">
+              Book a wash
+            </Button>
           </nav>
         </div>
       ) : null}

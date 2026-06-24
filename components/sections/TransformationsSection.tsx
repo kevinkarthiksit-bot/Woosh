@@ -53,15 +53,21 @@ export function TransformationsSection() {
 
   const items = useMemo(() => {
     const apiItems = media?.transformations;
-    if (apiItems?.length) {
-      return apiItems.map((item, index) => ({
+    if (!apiItems?.length) {
+      return transformationVideos;
+    }
+
+    const staticTitles = new Set(transformationVideos.map((item) => item.title));
+    const apiExtras = apiItems
+      .map((item, index) => ({
         id: item._id ?? String(index),
         title: item.title ?? item.label ?? "Woosh transformation",
         video: resolveMediaUrl(item.video ?? item.url, transformationVideos[0]?.video ?? ""),
         poster: resolveMediaUrl(item.image, transformationVideos[0]?.poster ?? ""),
-      }));
-    }
-    return transformationVideos;
+      }))
+      .filter((item) => !staticTitles.has(item.title));
+
+    return [...transformationVideos, ...apiExtras];
   }, [media]);
 
   return (

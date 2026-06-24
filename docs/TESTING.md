@@ -25,7 +25,7 @@ pnpm verify            # lint + unit + build (fast PR gate)
 
 Fast, no network. Covers:
 
-- `lib/api/*` — client, auth, mappers, slots, orders, services, media, users, memberships
+- `lib/api/*` — client, auth, mappers, slots, orders, services, media, users, memberships, **assistant**
 - `lib/account/*` — order filters, tab parsing
 - `lib/utils`, `lib/build-info`
 - `hooks/useSectionNav`
@@ -48,6 +48,30 @@ If `WOOSH_TEST_PHONE` / `WOOSH_TEST_OTP` are unset, integration suites are **ski
 Test orders use addresses prefixed with `WOOSH_CI_TEST` for identification.
 
 Config: [`vitest.integration.config.ts`](../vitest.integration.config.ts) — 120s timeout, 2 retries for cold starts.
+
+## AI assistant (local two-service setup)
+
+The chat widget calls a **separate** FastAPI service (`woosh-ai-assistant`), not the static Next.js export.
+
+```bash
+# Terminal 1 — assistant (sibling repo)
+cd ../woosh-ai-assistant
+cp .env.example .env
+# Set WOOSH_USE_MOCK_BACKEND=false and WOOSH_BACKEND_BASE_URL for live API
+uvicorn app.main:app --reload --port 8000
+
+# Terminal 2 — website
+cd woosh-website
+# .env: NEXT_PUBLIC_ASSISTANT_API_URL=http://localhost:8000
+pnpm dev:clean
+```
+
+Ensure `ALLOWED_ORIGINS` in the assistant includes `http://localhost:3000` (and preview/prod domains when deployed).
+
+**Deploy:** host the assistant on Render/Railway/Fly (port 8000), then set `NEXT_PUBLIC_ASSISTANT_API_URL` on Vercel preview/production.
+
+Unit: [`tests/unit/lib/api/assistant.test.ts`](../tests/unit/lib/api/assistant.test.ts)<br />
+E2E: [`tests/e2e/specs/assistant.spec.ts`](../tests/e2e/specs/assistant.spec.ts) — mocks `POST /chat` unless `ASSISTANT_URL` is set in CI.
 
 ## E2E tests (Playwright)
 

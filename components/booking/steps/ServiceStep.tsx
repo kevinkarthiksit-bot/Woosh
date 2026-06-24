@@ -27,6 +27,9 @@ export function ServiceStep({
   return (
     <div className="space-y-4">
       <h2 className="font-display text-h3 text-foreground">Choose your service</h2>
+      <p className="text-sm text-muted">
+        Prices are shown upfront. You can review add-ons, wallet deductions, and the final total before confirming.
+      </p>
       <ul className="grid gap-3">
         {services.map((service) => {
           const selected = selectedId === service._id;

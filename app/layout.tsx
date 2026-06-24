@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { DM_Sans, Plus_Jakarta_Sans } from "next/font/google";
+import { AssistantWidget } from "@/components/assistant/AssistantWidget";
 import { HashScrollHandler } from "@/components/HashScrollHandler";
 import { AuthModalProvider } from "@/components/providers/AuthModalProvider";
 import { AuthProvider } from "@/components/providers/AuthProvider";
@@ -60,6 +61,7 @@ export default function RootLayout({
             </main>
             <Footer />
             <MobileBookBar />
+            <AssistantWidget />
           </AuthModalProvider>
         </AuthProvider>
       </body>

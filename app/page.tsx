@@ -1,8 +1,8 @@
 import { AppDownloadSection } from "@/components/sections/AppDownloadSection";
-import { BlogsSection } from "@/components/sections/BlogsSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { DifferenceSection } from "@/components/sections/DifferenceSection";
 import { HeroSection } from "@/components/sections/HeroSection";
+import { HowWooshWorksSection } from "@/components/sections/HowWooshWorksSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { TransformationsSection } from "@/components/sections/TransformationsSection";
@@ -15,14 +15,14 @@ export default function HomePage() {
     <>
       <HeroSection />
       <TrustStrip />
+      <HowWooshWorksSection />
       <ServicesSection />
       <WooshPrimeSection />
-      <AppDownloadSection />
       <WhyWooshSection />
-      <TestimonialsSection />
       <DifferenceSection />
+      <TestimonialsSection />
       <TransformationsSection />
-      <BlogsSection />
+      <AppDownloadSection />
       <ContactSection />
     </>
   );

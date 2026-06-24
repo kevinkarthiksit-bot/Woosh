@@ -51,6 +51,9 @@ export function ReviewStep({
   return (
     <div className="space-y-4">
       <h2 className="font-display text-h3 text-foreground">Review & confirm</h2>
+      <p className="text-sm text-muted">
+        Please check the details below. Your booking is placed only after you confirm.
+      </p>
       <ul className="space-y-2 text-body text-foreground/80">
         <li>
           <strong>Service:</strong> {service.name} ({formatInr(service.basePrice)})
@@ -85,6 +88,18 @@ export function ReviewStep({
           <strong>Total:</strong> {formatInr(total)}
         </li>
       </ul>
+
+      <div className="grid gap-2 sm:grid-cols-3">
+        {[
+          "Final total shown before booking",
+          "Technician assignment after confirmation",
+          "Order tracking in your account",
+        ].map((item) => (
+          <div key={item} className="rounded-2xl border border-black/8 bg-background-muted px-4 py-3 text-xs font-semibold text-foreground">
+            {item}
+          </div>
+        ))}
+      </div>
 
       <div className="flex gap-2">
         <input

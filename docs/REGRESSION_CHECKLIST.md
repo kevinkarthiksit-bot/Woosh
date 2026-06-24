@@ -31,6 +31,15 @@ Run at **390px**, **768px**, and **1280px** before merging to `main`.
 - [ ] `/orders` redirects to `/account?tab=orders`
 - [ ] Navbar **My account** link works when logged in
 
+## AI assistant
+
+- [ ] Floating launcher visible above mobile book bar (390px)
+- [ ] Guest can ask FAQ (e.g. “How do I book?”) and get a reply
+- [ ] Guest order-status question prompts login (`requires_login`)
+- [ ] Logged-in user can ask “Where is my order?” and get status (live assistant + API)
+- [ ] Suggested actions: **Book car wash**, **My account**, **Contact support**
+- [ ] `NEXT_PUBLIC_ASSISTANT_API_URL` points to deployed assistant in preview/prod
+
 ## Mobile app video parity (car wash)
 
 Side-by-side with `Booking flow.mp4` on your machine while running `pnpm dev:clean`:
@@ -57,7 +66,7 @@ pnpm test:integration # live API (needs WOOSH_TEST_* secrets)
 pnpm test:e2e         # Playwright (build + serve out/)
 ```
 
-Playwright E2E specs mirror this checklist: landing, navigation, auth, five booking flows, account dashboard, orders redirect.
+Playwright E2E specs mirror this checklist: landing, navigation, auth, five booking flows, account dashboard, orders redirect, **assistant widget**.
 
 **Account routes:** `/account` is the primary hub; `/orders` redirects to `/account?tab=orders`.
 
@@ -65,3 +74,5 @@ Playwright E2E specs mirror this checklist: landing, navigation, auth, five book
 
 - [ ] Preview URL loads all sections
 - [ ] CORS allows API calls from preview domain (confirm with app developer)
+- [ ] Assistant service health (`GET /health`) returns `backend_mode: live` when configured
+- [ ] `NEXT_PUBLIC_ASSISTANT_API_URL` on Vercel points to deployed assistant; chat widget loads on preview

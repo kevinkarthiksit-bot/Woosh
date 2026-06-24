@@ -30,6 +30,9 @@ export function ScheduleStep({
   return (
     <div className="space-y-4">
       <h2 className="font-display text-h3 text-foreground">Pick a slot</h2>
+      <p className="text-sm text-muted">
+        Choose an available visit window. Your booking is placed only after the review step.
+      </p>
       {fallbackToAllTimes ? (
         <p className="rounded-xl bg-amber-50 px-3 py-2 text-sm text-amber-800">
           Showing all time slots — live availability could not be loaded.

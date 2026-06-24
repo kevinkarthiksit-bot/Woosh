@@ -18,6 +18,9 @@ export function AddressStep({
   return (
     <div className="space-y-4">
       <h2 className="font-display text-h3 text-foreground">Service address</h2>
+      <p className="text-sm text-muted">
+        Share the exact parking or pickup location. You can confirm all details once more before placing the booking.
+      </p>
       <label className="block">
         <span className="mb-2 block text-sm font-medium">Where should Woosh visit?</span>
         <textarea

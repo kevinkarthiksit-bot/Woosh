@@ -15,6 +15,8 @@ Production deploys are driven by **Git**, not manual CLI uploads. Each push to `
    | Variable | Preview | Production | Notes |
    |----------|---------|------------|--------|
    | `NEXT_PUBLIC_SITE_LIVE` | `false` | `false` until public launch, then `true` | Controls noindex + preview banner |
+   | `NEXT_PUBLIC_API_BASE_URL` | `https://car-wash-vbry.onrender.com/api` | `https://car-wash-vbry.onrender.com/api` | Render API root used by booking/account |
+   | `NEXT_PUBLIC_ASSISTANT_API_URL` | Assistant preview URL | Assistant production URL | Required for chat widget; never an OpenAI key |
    | `NEXT_PUBLIC_SITE_VERSION` | *(optional)* | *(optional)* | Defaults from `package.json` via `next.config.ts` |
    | `VERCEL_GIT_COMMIT_SHA` | *(automatic)* | *(automatic)* | Mapped to footer label via `next.config.ts` |
 
@@ -67,6 +69,30 @@ Named releases (semver, changelog, git tags): see [`docs/RELEASE.md`](RELEASE.md
 2. Attach production domains (`www.getwoosh.com` and optionally `getwoosh.com`) in Vercel; follow DNS records Vercel shows for each.
 3. Smoke-test: no preview banner, `robots` allows indexing, footer shows `Site vX.Y.Z · <sha>`.
 4. Record the flip in [`docs/DECISIONS.md`](DECISIONS.md).
+
+## Assistant deployment checklist
+
+The AI assistant is a separate FastAPI service. Do not deploy OpenAI keys to Vercel or expose them through `NEXT_PUBLIC_*` variables.
+
+Assistant host (Render/Railway/Fly):
+
+| Variable | Preview | Production | Notes |
+|----------|---------|------------|-------|
+| `OPENAI_API_KEY` | Preview key | Production key | Secret server-side value only |
+| `OPENAI_MODEL` | `gpt-4o-mini` or approved model | `gpt-4o-mini` or approved model | Enables LLM FAQ responses |
+| `WOOSH_USE_MOCK_BACKEND` | `false` when testing live API | `false` | Use mock only for local development |
+| `WOOSH_BACKEND_BASE_URL` | `https://car-wash-vbry.onrender.com/api` | `https://car-wash-vbry.onrender.com/api` | Live Render API root |
+| `ALLOWED_ORIGINS` | Preview website origin | Production website origin | Include comma-separated preview/prod domains |
+
+Smoke checks:
+
+```powershell
+Invoke-RestMethod https://<assistant-host>/health
+```
+
+- Confirm `llm_enabled: true` when OpenAI variables are configured.
+- Confirm `backend_mode: live` before production launch.
+- Confirm website `POST /chat` requests go only to `NEXT_PUBLIC_ASSISTANT_API_URL`.
 
 ## Emergency deploy (CLI fallback)
 

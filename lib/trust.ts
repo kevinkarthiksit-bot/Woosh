@@ -1,10 +1,11 @@
-/** Trust content — enable slots only when real data is provided (no fake stats). */
+/** Trust content — proof points only, no fabricated volume or rating claims. */
 
 export interface TrustMetric {
   id: string;
   label: string;
   value: string;
   enabled: boolean;
+  description?: string;
 }
 
 export interface TrustTestimonial {
@@ -17,9 +18,27 @@ export interface TrustTestimonial {
 }
 
 export const trustMetrics: TrustMetric[] = [
-  { id: "washes", label: "Washes completed", value: "—", enabled: false },
-  { id: "cities", label: "Cities served", value: "—", enabled: false },
-  { id: "rating", label: "Average rating", value: "—", enabled: false },
+  {
+    id: "doorstep",
+    label: "Doorstep service",
+    value: "No queues",
+    description: "Choose a slot and Woosh comes to your parking spot.",
+    enabled: true,
+  },
+  {
+    id: "pricing",
+    label: "Transparent pricing",
+    value: "Upfront",
+    description: "See services, add-ons, coupons, and Woosh Coins before you confirm.",
+    enabled: true,
+  },
+  {
+    id: "tracking",
+    label: "Account-ready care",
+    value: "Trackable",
+    description: "Orders, vehicles, wallet, and referrals live in your Woosh account.",
+    enabled: true,
+  },
 ];
 
 export const trustTestimonials: TrustTestimonial[] = [
