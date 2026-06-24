@@ -33,7 +33,7 @@ Vercel → **woosh-website** → **Settings → General** (and **Build & Develop
 | Production Branch | `main` |
 | Framework Preset | Next.js (or Other with commands below) |
 | Build Command | `pnpm build` |
-| Output Directory | **`out`** |
+| Output Directory | *(leave default — empty)* — Vercel auto-detects static export; do not set `out` manually |
 | Install Command | `pnpm install` |
 | Node.js Version | 22.x |
 
