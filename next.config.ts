@@ -8,6 +8,7 @@ const pkg = JSON.parse(
 
 const nextConfig: NextConfig = {
   output: "export",
+  trailingSlash: true,
   outputFileTracingRoot: path.join(__dirname),
   images: {
     unoptimized: true,
