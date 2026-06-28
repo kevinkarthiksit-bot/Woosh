@@ -22,7 +22,8 @@ const nextConfig: NextConfig = {
       process.env.NEXT_PUBLIC_API_BASE_URL ??
       "https://car-wash-vbry.onrender.com/api",
     NEXT_PUBLIC_ASSISTANT_API_URL:
-      process.env.NEXT_PUBLIC_ASSISTANT_API_URL ?? "http://localhost:8000",
+      process.env.NEXT_PUBLIC_ASSISTANT_API_URL ??
+      (process.env.VERCEL ? "" : "http://localhost:8000"),
   },
 };
 

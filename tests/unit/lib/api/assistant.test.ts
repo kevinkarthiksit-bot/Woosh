@@ -2,6 +2,7 @@ import { describe, expect, it, vi, beforeEach, afterEach } from "vitest";
 import {
   AssistantApiError,
   getAssistantApiUrl,
+  isAssistantConfigured,
   postChat,
 } from "@/lib/api/assistant";
 
@@ -86,6 +87,41 @@ describe("postChat", () => {
 
   it("defaults assistant URL to localhost", () => {
     expect(getAssistantApiUrl()).toBe("http://localhost:8000");
+  });
+
+  it("rejects chat when assistant URL is unset on a public site", async () => {
+    vi.stubGlobal("window", {
+      location: { hostname: "preview.getwoosh.com" },
+    });
+    process.env.NEXT_PUBLIC_ASSISTANT_API_URL = "";
+
+    await expect(
+      postChat({ message: "Hello", auth_state: "guest" }),
+    ).rejects.toMatchObject({
+      status: 0,
+      message: expect.stringContaining("not connected yet"),
+    });
+  });
+
+  it("rejects chat when assistant URL points to localhost on a public site", async () => {
+    vi.stubGlobal("window", {
+      location: { hostname: "preview.getwoosh.com" },
+    });
+
+    await expect(
+      postChat({ message: "Hello", auth_state: "guest" }),
+    ).rejects.toMatchObject({
+      status: 0,
+      message: expect.stringContaining("not connected yet"),
+    });
+  });
+
+  it("allows localhost assistant URL on localhost", () => {
+    vi.stubGlobal("window", {
+      location: { hostname: "localhost" },
+    });
+
+    expect(isAssistantConfigured()).toBe(true);
   });
 });
 

@@ -51,10 +51,25 @@ export interface ChatResponse {
 }
 
 const DEFAULT_ASSISTANT_URL = "http://localhost:8000";
+const LOCAL_ASSISTANT_PATTERN = /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?\/?$/i;
 const ASSISTANT_TIMEOUT_MS = 30000;
+const ASSISTANT_NOT_CONFIGURED_MESSAGE =
+  "Woosh Concierge is not connected yet. You can still book from the services page or contact support.";
 
 export function getAssistantApiUrl(): string {
   return process.env.NEXT_PUBLIC_ASSISTANT_API_URL ?? DEFAULT_ASSISTANT_URL;
+}
+
+/** True when the widget can call a reachable assistant API from the current page. */
+export function isAssistantConfigured(): boolean {
+  const url = getAssistantApiUrl().trim();
+  if (!url) return false;
+
+  if (typeof window === "undefined") return true;
+
+  const pointsToLocalhost = LOCAL_ASSISTANT_PATTERN.test(url);
+  const onLocalhost = /^(localhost|127\.0\.0\.1)$/i.test(window.location.hostname);
+  return !pointsToLocalhost || onLocalhost;
 }
 
 export class AssistantApiError extends Error {
@@ -75,6 +90,10 @@ function makeRequestId(): string {
 }
 
 export async function postChat(request: ChatRequest): Promise<ChatResponse> {
+  if (!isAssistantConfigured()) {
+    throw new AssistantApiError(0, ASSISTANT_NOT_CONFIGURED_MESSAGE);
+  }
+
   const baseUrl = getAssistantApiUrl().replace(/\/$/, "");
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), ASSISTANT_TIMEOUT_MS);
